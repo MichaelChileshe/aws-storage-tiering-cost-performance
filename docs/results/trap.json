@@ -1,0 +1,71 @@
+{
+ "objects": 10000000,
+ "object_kib": 20,
+ "data_gib": 190.73486328125,
+ "rows": [
+  {
+   "option": "STANDARD (keep)",
+   "monthly_usd": 4.38690185546875,
+   "one_time_usd": 0.0,
+   "note": "190.7 GiB of data",
+   "monthly_saving_usd": 0.0,
+   "payback_months": null,
+   "payback": "-"
+  },
+  {
+   "option": "GLACIER via lifecycle",
+   "monthly_usd": 3.5400390625,
+   "one_time_usd": 300.0,
+   "note": "data + 381.5 GiB of per-object metadata (32 KiB at Glacier + 8 KiB at Standard); one transition request per object; 90-day minimum; restores take minutes to hours; needs transition_default_minimum_object_size = varies_by_storage_class (the default blocks it)",
+   "monthly_saving_usd": 0.84686279296875,
+   "payback_months": 354.2,
+   "payback": 354.2
+  },
+  {
+   "option": "GLACIER_IR via lifecycle",
+   "monthly_usd": 4.8828125,
+   "one_time_usd": 200.00000000000003,
+   "note": "billed at the 128 KiB minimum: 1,220.7 GiB; 90-day minimum; blocked by the 128 KiB default",
+   "monthly_saving_usd": -0.49591064453125,
+   "payback_months": null,
+   "payback": "never"
+  },
+  {
+   "option": "STANDARD_IA via lifecycle",
+   "monthly_usd": 15.2587890625,
+   "one_time_usd": 100.00000000000001,
+   "note": "billed at the 128 KiB minimum: 1,220.7 GiB; 30-day minimum; blocked by the 128 KiB default",
+   "monthly_saving_usd": -10.87188720703125,
+   "payback_months": null,
+   "payback": "never"
+  },
+  {
+   "option": "INTELLIGENT_TIERING",
+   "monthly_usd": 4.38690185546875,
+   "one_time_usd": 0.0,
+   "note": "objects under 128 KiB are not monitored and stay in Frequent Access: no monitoring fee, no saving",
+   "monthly_saving_usd": 0.0,
+   "payback_months": null,
+   "payback": "never"
+  },
+  {
+   "option": "BUNDLE 512 MiB -> GLACIER",
+   "monthly_usd": 0.6866979675292969,
+   "one_time_usd": 4.01146,
+   "note": "382 bundles; one-time = reading every small object once + 382 transitions",
+   "monthly_saving_usd": 3.700203887939453,
+   "payback_months": 1.1,
+   "payback": 1.1
+  }
+ ],
+ "prices": {
+  "standard": 0.023,
+  "glacier": 0.0036,
+  "gir": 0.004,
+  "sia": 0.0125,
+  "int_fa": 0.023,
+  "transition_to_glacier_per_1000": 0.030000000000000002,
+  "transition_to_gir_per_1000": 0.02,
+  "transition_to_sia_per_1000": 0.01
+ }
+}

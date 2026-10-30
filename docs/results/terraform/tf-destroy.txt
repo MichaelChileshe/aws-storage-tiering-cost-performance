@@ -1,0 +1,1390 @@
+data.aws_ssm_parameter.al2023_arm: Reading...
+data.aws_availability_zone.lab: Reading...
+aws_s3_directory_bucket.express: Refreshing state... [id=zenzele-express-6fe3235b--use1-az4--x-s3]
+aws_iam_role.bench: Refreshing state... [id=zenzele-tiering-bench-role]
+aws_vpc.lab: Refreshing state... [id=vpc-0fd16673264ab2874]
+aws_s3_bucket.lab: Refreshing state... [id=zenzele-tiering-6fe3235b]
+data.aws_ssm_parameter.al2023_arm: Read complete after 1s [id=/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64]
+data.aws_availability_zone.lab: Read complete after 1s [id=us-east-1c]
+aws_ebs_volume.bench["small"]: Refreshing state... [id=vol-02d9cdda17912855a]
+aws_ebs_volume.bench["sc1"]: Refreshing state... [id=vol-0fab9ddb8d547ec18]
+aws_ebs_volume.bench["gp2"]: Refreshing state... [id=vol-0a95f034d83073316]
+aws_ebs_volume.bench["st1"]: Refreshing state... [id=vol-02107a06909169733]
+aws_ebs_volume.bench["gp3"]: Refreshing state... [id=vol-0af0cac46e461f18f]
+aws_iam_role_policy_attachment.bench_ssm: Refreshing state... [id=zenzele-tiering-bench-role/arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore]
+aws_iam_instance_profile.bench: Refreshing state... [id=zenzele-tiering-bench-profile]
+aws_ebs_snapshot.export[0]: Refreshing state... [id=snap-00f0879b3f2daf437]
+aws_internet_gateway.lab: Refreshing state... [id=igw-0b1a6dc4923ac5844]
+aws_route_table.lab: Refreshing state... [id=rtb-01cc0c9b80015ad40]
+aws_subnet.lab: Refreshing state... [id=subnet-03006fd4f6ee627e3]
+aws_security_group.bench: Refreshing state... [id=sg-0867b2b8e194bb401]
+aws_vpc_security_group_egress_rule.all: Refreshing state... [id=sgr-039804d7ad9f8c6e2]
+aws_route.internet: Refreshing state... [id=r-rtb-01cc0c9b80015ad401080289494]
+aws_vpc_endpoint.s3: Refreshing state... [id=vpce-0f5c74bd96e86d823]
+aws_route_table_association.lab: Refreshing state... [id=rtbassoc-074860e7df91cd508]
+aws_instance.bench[0]: Refreshing state... [id=i-02fd158d191d0afa7]
+aws_s3_bucket_public_access_block.lab: Refreshing state... [id=zenzele-tiering-6fe3235b]
+aws_s3_bucket_server_side_encryption_configuration.lab: Refreshing state... [id=zenzele-tiering-6fe3235b]
+aws_s3control_storage_lens_configuration.lab: Refreshing state... [id=<account-id>:zenzele-tiering-lens]
+aws_iam_role_policy.bench_buckets: Refreshing state... [id=zenzele-tiering-bench-role:zenzele-tiering-lab-buckets]
+aws_s3_bucket_intelligent_tiering_configuration.research: Refreshing state... [id=zenzele-tiering-6fe3235b:research-archive-tiers]
+aws_s3_bucket_lifecycle_configuration.lab: Refreshing state... [id=zenzele-tiering-6fe3235b]
+aws_s3_bucket_policy.lab: Refreshing state... [id=zenzele-tiering-6fe3235b]
+aws_volume_attachment.bench["gp3"]: Refreshing state... [id=vai-379328311]
+aws_volume_attachment.bench["small"]: Refreshing state... [id=vai-2509980932]
+aws_volume_attachment.bench["sc1"]: Refreshing state... [id=vai-507244220]
+aws_volume_attachment.bench["gp2"]: Refreshing state... [id=vai-1264854420]
+aws_volume_attachment.bench["st1"]: Refreshing state... [id=vai-2511314058]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_ebs_snapshot.export[0] will be destroyed
+  - resource "aws_ebs_snapshot" "export" {
+      - arn                    = "arn:aws:ec2:us-east-1::snapshot/snap-00f0879b3f2daf437" -> null
+      - description            = "Zenzele nightly export volume - archive tier drill" -> null
+      - encrypted              = true -> null
+      - id                     = "snap-00f0879b3f2daf437" -> null
+      - kms_key_id             = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+      - owner_id               = "<account-id>" -> null
+      - region                 = "us-east-1" -> null
+      - storage_tier           = "archive" -> null
+      - tags                   = {
+          - "Name" = "zenzele-export-snapshot"
+        } -> null
+      - tags_all               = {
+          - "ManagedBy" = "terraform"
+          - "Name"      = "zenzele-export-snapshot"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+      - volume_id              = "vol-02d9cdda17912855a" -> null
+      - volume_size            = 1 -> null
+        # (3 unchanged attributes hidden)
+
+      - timeouts {
+          - create = "30m" -> null
+        }
+    }
+
+  # aws_ebs_volume.bench["gp2"] will be destroyed
+  - resource "aws_ebs_volume" "bench" {
+      - arn                        = "arn:aws:ec2:us-east-1:<account-id>:volume/vol-0a95f034d83073316" -> null
+      - availability_zone          = "us-east-1c" -> null
+      - create_time                = "2026-10-30T07:28:09Z" -> null
+      - encrypted                  = true -> null
+      - final_snapshot             = false -> null
+      - id                         = "vol-0a95f034d83073316" -> null
+      - iops                       = 3000 -> null
+      - kms_key_id                 = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+      - multi_attach_enabled       = false -> null
+      - region                     = "us-east-1" -> null
+      - size                       = 100 -> null
+      - tags                       = {
+          - "BenchVolume" = "gp2"
+          - "Name"        = "zenzele-bench-gp2"
+        } -> null
+      - tags_all                   = {
+          - "BenchVolume" = "gp2"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "zenzele-bench-gp2"
+          - "Project"     = "aws-storage-tiering-cost-performance"
+        } -> null
+      - throughput                 = 125 -> null
+      - type                       = "gp3" -> null
+      - volume_initialization_rate = 0 -> null
+        # (2 unchanged attributes hidden)
+    }
+
+  # aws_ebs_volume.bench["gp3"] will be destroyed
+  - resource "aws_ebs_volume" "bench" {
+      - arn                        = "arn:aws:ec2:us-east-1:<account-id>:volume/vol-0af0cac46e461f18f" -> null
+      - availability_zone          = "us-east-1c" -> null
+      - create_time                = "2026-10-30T07:28:09Z" -> null
+      - encrypted                  = true -> null
+      - final_snapshot             = false -> null
+      - id                         = "vol-0af0cac46e461f18f" -> null
+      - iops                       = 6000 -> null
+      - kms_key_id                 = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+      - multi_attach_enabled       = false -> null
+      - region                     = "us-east-1" -> null
+      - size                       = 100 -> null
+      - tags                       = {
+          - "BenchVolume" = "gp3"
+          - "Name"        = "zenzele-bench-gp3"
+        } -> null
+      - tags_all                   = {
+          - "BenchVolume" = "gp3"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "zenzele-bench-gp3"
+          - "Project"     = "aws-storage-tiering-cost-performance"
+        } -> null
+      - throughput                 = 500 -> null
+      - type                       = "gp3" -> null
+      - volume_initialization_rate = 0 -> null
+        # (2 unchanged attributes hidden)
+    }
+
+  # aws_ebs_volume.bench["sc1"] will be destroyed
+  - resource "aws_ebs_volume" "bench" {
+      - arn                        = "arn:aws:ec2:us-east-1:<account-id>:volume/vol-0fab9ddb8d547ec18" -> null
+      - availability_zone          = "us-east-1c" -> null
+      - create_time                = "2026-10-30T07:28:08Z" -> null
+      - encrypted                  = true -> null
+      - final_snapshot             = false -> null
+      - id                         = "vol-0fab9ddb8d547ec18" -> null
+      - iops                       = 0 -> null
+      - kms_key_id                 = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+      - multi_attach_enabled       = false -> null
+      - region                     = "us-east-1" -> null
+      - size                       = 125 -> null
+      - tags                       = {
+          - "BenchVolume" = "sc1"
+          - "Name"        = "zenzele-bench-sc1"
+        } -> null
+      - tags_all                   = {
+          - "BenchVolume" = "sc1"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "zenzele-bench-sc1"
+          - "Project"     = "aws-storage-tiering-cost-performance"
+        } -> null
+      - throughput                 = 0 -> null
+      - type                       = "sc1" -> null
+      - volume_initialization_rate = 0 -> null
+        # (2 unchanged attributes hidden)
+    }
+
+  # aws_ebs_volume.bench["small"] will be destroyed
+  - resource "aws_ebs_volume" "bench" {
+      - arn                        = "arn:aws:ec2:us-east-1:<account-id>:volume/vol-02d9cdda17912855a" -> null
+      - availability_zone          = "us-east-1c" -> null
+      - create_time                = "2026-10-30T07:28:08Z" -> null
+      - encrypted                  = true -> null
+      - final_snapshot             = false -> null
+      - id                         = "vol-02d9cdda17912855a" -> null
+      - iops                       = 3000 -> null
+      - kms_key_id                 = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+      - multi_attach_enabled       = false -> null
+      - region                     = "us-east-1" -> null
+      - size                       = 1 -> null
+      - tags                       = {
+          - "BenchVolume" = "small"
+          - "Name"        = "zenzele-bench-small"
+        } -> null
+      - tags_all                   = {
+          - "BenchVolume" = "small"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "zenzele-bench-small"
+          - "Project"     = "aws-storage-tiering-cost-performance"
+        } -> null
+      - throughput                 = 125 -> null
+      - type                       = "gp3" -> null
+      - volume_initialization_rate = 0 -> null
+        # (2 unchanged attributes hidden)
+    }
+
+  # aws_ebs_volume.bench["st1"] will be destroyed
+  - resource "aws_ebs_volume" "bench" {
+      - arn                        = "arn:aws:ec2:us-east-1:<account-id>:volume/vol-02107a06909169733" -> null
+      - availability_zone          = "us-east-1c" -> null
+      - create_time                = "2026-10-30T07:28:08Z" -> null
+      - encrypted                  = true -> null
+      - final_snapshot             = false -> null
+      - id                         = "vol-02107a06909169733" -> null
+      - iops                       = 0 -> null
+      - kms_key_id                 = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+      - multi_attach_enabled       = false -> null
+      - region                     = "us-east-1" -> null
+      - size                       = 125 -> null
+      - tags                       = {
+          - "BenchVolume" = "st1"
+          - "Name"        = "zenzele-bench-st1"
+        } -> null
+      - tags_all                   = {
+          - "BenchVolume" = "st1"
+          - "ManagedBy"   = "terraform"
+          - "Name"        = "zenzele-bench-st1"
+          - "Project"     = "aws-storage-tiering-cost-performance"
+        } -> null
+      - throughput                 = 0 -> null
+      - type                       = "st1" -> null
+      - volume_initialization_rate = 0 -> null
+        # (2 unchanged attributes hidden)
+    }
+
+  # aws_iam_instance_profile.bench will be destroyed
+  - resource "aws_iam_instance_profile" "bench" {
+      - arn         = "arn:aws:iam::<account-id>:instance-profile/zenzele-tiering-bench-profile" -> null
+      - create_date = "2026-10-30T07:25:14Z" -> null
+      - id          = "zenzele-tiering-bench-profile" -> null
+      - name        = "zenzele-tiering-bench-profile" -> null
+      - path        = "/" -> null
+      - role        = "zenzele-tiering-bench-role" -> null
+      - tags        = {} -> null
+      - tags_all    = {
+          - "ManagedBy" = "terraform"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+      - unique_id   = "AIPA3IFWBO65VLCSPUTBW" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_iam_role.bench will be destroyed
+  - resource "aws_iam_role" "bench" {
+      - arn                   = "arn:aws:iam::<account-id>:role/zenzele-tiering-bench-role" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "ec2.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2026-10-30T07:25:12Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "zenzele-tiering-bench-role" -> null
+      - managed_policy_arns   = [
+          - "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
+        ] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "zenzele-tiering-bench-role" -> null
+      - path                  = "/" -> null
+      - tags                  = {} -> null
+      - tags_all              = {
+          - "ManagedBy" = "terraform"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+      - unique_id             = "AROA3IFWBO6522YIXD44P" -> null
+        # (3 unchanged attributes hidden)
+
+      - inline_policy {
+          - name   = "zenzele-tiering-lab-buckets" -> null
+          - policy = jsonencode(
+                {
+                  - Statement = [
+                      - {
+                          - Action   = [
+                              - "s3:PutObject",
+                              - "s3:GetObject",
+                              - "s3:DeleteObject",
+                              - "s3:RestoreObject",
+                            ]
+                          - Effect   = "Allow"
+                          - Resource = [
+                              - "arn:aws:s3:::zenzele-tiering-6fe3235b/*",
+                            ]
+                          - Sid      = "LabBucketObjects"
+                        },
+                      - {
+                          - Action   = [
+                              - "s3:ListBucket",
+                            ]
+                          - Effect   = "Allow"
+                          - Resource = [
+                              - "arn:aws:s3:::zenzele-tiering-6fe3235b",
+                            ]
+                          - Sid      = "LabBucketList"
+                        },
+                      - {
+                          - Action   = [
+                              - "s3express:CreateSession",
+                            ]
+                          - Effect   = "Allow"
+                          - Resource = [
+                              - "arn:aws:s3express:us-east-1:<account-id>:bucket/zenzele-express-6fe3235b--use1-az4--x-s3",
+                            ]
+                          - Sid      = "ExpressSession"
+                        },
+                    ]
+                  - Version   = "2012-10-17"
+                }
+            ) -> null
+        }
+    }
+
+  # aws_iam_role_policy.bench_buckets will be destroyed
+  - resource "aws_iam_role_policy" "bench_buckets" {
+      - id          = "zenzele-tiering-bench-role:zenzele-tiering-lab-buckets" -> null
+      - name        = "zenzele-tiering-lab-buckets" -> null
+      - policy      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "s3:PutObject",
+                          - "s3:GetObject",
+                          - "s3:DeleteObject",
+                          - "s3:RestoreObject",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:s3:::zenzele-tiering-6fe3235b/*",
+                        ]
+                      - Sid      = "LabBucketObjects"
+                    },
+                  - {
+                      - Action   = [
+                          - "s3:ListBucket",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:s3:::zenzele-tiering-6fe3235b",
+                        ]
+                      - Sid      = "LabBucketList"
+                    },
+                  - {
+                      - Action   = [
+                          - "s3express:CreateSession",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = [
+                          - "arn:aws:s3express:us-east-1:<account-id>:bucket/zenzele-express-6fe3235b--use1-az4--x-s3",
+                        ]
+                      - Sid      = "ExpressSession"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - role        = "zenzele-tiering-bench-role" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_iam_role_policy_attachment.bench_ssm will be destroyed
+  - resource "aws_iam_role_policy_attachment" "bench_ssm" {
+      - id         = "zenzele-tiering-bench-role/arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore" -> null
+      - policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore" -> null
+      - role       = "zenzele-tiering-bench-role" -> null
+    }
+
+  # aws_instance.bench[0] will be destroyed
+  - resource "aws_instance" "bench" {
+      - ami                                  = "ami-0702f1d5548f1fe1e" -> null
+      - arn                                  = "arn:aws:ec2:us-east-1:<account-id>:instance/i-02fd158d191d0afa7" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "us-east-1c" -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = true -> null
+      - force_destroy                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - iam_instance_profile                 = "zenzele-tiering-bench-profile" -> null
+      - id                                   = "i-02fd158d191d0afa7" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "c7g.xlarge" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-09fb13f6747e3884d" -> null
+      - private_dns                          = "ip-10-29-1-123.ec2.internal" -> null
+      - private_ip                           = "10.29.1.123" -> null
+      - public_dns                           = "ec2-3-93-194-228.compute-1.amazonaws.com" -> null
+      - public_ip                            = "3.93.194.228" -> null
+      - region                               = "us-east-1" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-03006fd4f6ee627e3" -> null
+      - tags                                 = {
+          - "Name" = "zenzele-bench"
+        } -> null
+      - tags_all                             = {
+          - "ManagedBy" = "terraform"
+          - "Name"      = "zenzele-bench"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data                            = <<-EOT
+            #!/bin/bash
+            # Boot script for the bench instance (rendered by Terraform): fio for the EBS tests, boto3 for
+            # the S3 tests, and the bench agent that both run through SSM.
+            set -euxo pipefail
+            dnf install -y fio
+            dnf install -y python3-boto3 || echo "python3-boto3 not installed - the S3 tests will report it"
+            mkdir -p /opt/bench /var/tmp/bench
+            echo 'H4sIAAAAAAAA/7x7f2/bOBLo//kUc1wUT2ol2UnavtY4L9Du5vb1dpsumt7tYg1DoCXaYS2JKkk5cYt894cZUrL8K02xxRlFY1Ezw+FwfpP+4R+DxujBTFYDUa2gXttrVZ2fMMb+EtVnUQgwVmm+ELGVQstqATNRZdfAF6KyCbxvKgPvLsFeC/9CVsbyKhMQvCr5Z1XBb7JqbuFseHYegbQGzNpYUZ78TjPBefIyjIAXN3xtIONFIXKw11o1i2u4unoLszXRNpmWtTUgq/brIIGLldBrKAU3jRalqCxIA7WWlRU5cHOiKgGFrMQI4P3F1X9++wBfPhpV3Z2cQLtQx3TqVlOvQVZzdfztXBYFQByvVAErVcRJkkAcl3IGZ8PhfWgK9tEqXgpY1GcQxwWfiQJm3AiYxLFuKitLAWfDKT7OmmwpLLyeHp8g11xW903QkXw6fCBJcw7EcwsKcSxuay2MgT+JSbGQqoLGxIIbG58Sq6bkRRFrURs4HTruC64Xoh26Z76aayPgn3OpYtXYurEJbtWPQJ9Ai9gBcDB8JXLQ/IbEOpeFAF6tb66FFuHJyRWfC7seAUc5NKVAjZirpspRkVD7Ll5fta/e/AzBpbRagbitlREGpAVuSN8u//tWgBFa8gKqppwJjVpa5Sf4kpgGLeYNIvFqDblYyUyAveakg6VqSAcDhNZK2Q03YQRG4UQZr0BVxRrESmi40dIKsIroi7K2ayj4zKOZBO3xRJa10ha4XpAs2uecW4Gb2z4vCjVrv6MM2+/KtN/qgtu50mX7bJpZrVUmTAdh1t3XPulGF4WcJVp8aoSxJyd/vHv/K4yBDVZcD2xZD2hT2cn7i1/evLtMr978dYGvT89evGUAP9BS1/BRzeBG6SVas5G5IIHPpTYWTs9ewFv5GtScBp1YI5KOFZUDOvn3u9dXMIYvJ6gaPwCq+QgCfRPBrFDZEoz8LCL41IgGKdT2OiRIpnmVa8Hzp0s2gqB7ZBGwp0sWwflZGG0gaUd6oPR8ANaIT0jltHSQnuDpWxbB6fMwOrk7OTnJxRwqdROEI8LRwja66jYu6b4gTPeA/31WlUgam4WJNAq3jNsAx00tsjErZVFIIzJV5YaFiRZ1wTMRsCfD4Wg4RDb+YqGfXgvTFDZQs4+eCfKTAfOOkcETUpYkb8raIBjqqbbpUqzN+INuRBjBvGjMtXs4OTn5AeK/+SELdtZO9i+rhWM2rTMbZAW3EXzy7DLGflJlXQgrVRUX3IoqW0MtdCYqi07gEwQiWSTw8mUyDDFOlAbmWpU4yf8xgNTSyiQ9jJLXCdoVkp8rDcsIVohIMycLYQO2gWYhKA1f7sJEWlGadivxY/V684AfOQc+M8G8UNwGyxBi+BTCP+FUxM+3AXvKoNFJBSsYwKl4HsF52AGK20zUFv7Li0ZcaK30No1MVVZWjehr1qWqhN93chXpXKrAilu7ESaKPvauNnaaNUYFaPcj/hG+IFC6EtpIVaE2OR0ybAQTDK25zCzuABk0r3LIpRYZ7s/0LqF5PqhCaG6FAZwcZmKutDP3f1+9u4QAmUA/SLoIN1xXsloYZ+ZhtzfGcm1hTDSSuazygH1hTj5y7t/+E4YbsWgujegJLGCVcjOq2UeRWdzkjep5Ujm3HMbOCArFc0MCmxD50dTBqAb5mEw7lcGVS7Jk7hTmo5oZFsFk2tMPBOxEQwrWuQnnVMLtHTXIhpoRwQ7Pq9+2nikENW5mqywvUqlw+mG4q4+VsgSO24TfPZJU6WxthdllYU+xusGC282c3qjYIea2AO+BU41NeF2LKg++7PGA8mSjThr4iO6eeee7BZpLzUYbQR+AEKgMfXJuAOV1AFqqGlXdGWYnr5rkmwzDCE4PYZVyto82u/FixqnQxIdPXzz7v8+TYQRnh4iguErBq7TckOp8Er7wPGy8xQEitDn1s6Ej0nOpz4j9YwgvX+4hkEu9B+EgxsujGCW/7S9s421LfttJ6OiyfCrrKHj5+rGDarGxixFawDbEXdh3m9sOb9Qza/QW7Xi45QlVY+++TzB0yY5xbts9pHOlg5UqNm57O32Nf4RBLlaDalWKP6tTUBVwcCltW4ZtvKhLZseIvkkVYvRC3gMWslpSNockc2mWg9k6ljlRj10xl14U3FiZpa8x00qvrNIixdzBUW99sjJJze11Im6lsSZAwj0H46XdAmnBC/ziwDrXmlldoLPEdDbB/wI2MGszyApuDPFE/z1mX4nEqhZV0M71UckqQMoRJm7IMgsxceJ5ECbGalkHIYzHfjlHg7UTEa67JYy1G3omIh7CE2DVKdsN4e+uvha/zdqg0GzA/CY/MlhPoMfm1vLsGqtjBfZaml6hXSlXr/gq5Ebaa1eKuGWEDB7hrm9SQSxcUjlPfZ0S5GLlpUg16Hh/WQjRbQ3W1Lg1JFo2wNphQKS24ojRGYwJNjF1IW0QTobTk/7O7E6ypxFGZyHuC9fW4KoCBN2Nlp3IHhkIlAaOOY+VFGzVHKQNeyXZyK1eVguSo2qya5AWBUQrdALiRZGKmUm9Rba5nov+Pnx5OSypI6E0SrGvqd9oQitVPGZhb2VyDgxLXstwApzoHq3Bz0rmTtrLRDtxsxRLkHByuhG6auwENStG1V3JfHI+mk57233AFFtjbez3S/l1U5mTk/Ti8pc3lxcuoXKCF9VCViLYuLsPWBlyY4XBynxdZfBm8M6DOStAerNGFjlccwNBRjayyR3lHPw8e/7Hj7dK6R/bXCStZbZMW4a2ZNFDbMuVPqybaMsVXYuipgx43Ku1E91UwQRDC/rgOBbVAuHYNIKM17bRInUJKlVcEaW/7VdZCtXY8fkQrSPHzem5mcD7mag/2QeHcnFbSy3yfW/MahTvphgSLlEt5Iw7BqVKGy2rBdvWUoJr19ca+rau+hm2KpR2Ou+RmopKlFysIqrnI6By3kSugI/AR/gIFTGdywIheFmPz5wwUnQMuStN3eRZifbQEy+SHaPeO/osjpFMN0pTszh2+eP41CFJ5XaVQNoN3kohWBzrG3qNHLM4nhl6Qt6JAC1g/Ch3PoYWg9w0JZYK7TxGfnZz9Donu9Oo+dwIOx46DNe9qAXvRiqFY6osed2SXWjV1KkWtdJWVgsc3iW6VwA6TK95FOK8xKetQW0EvtlnFPcTlHcc9/bDs+E3zwuh20paRVmn/Xe8rN08dogVX9sHCbwB7htQVuYPt5e2DfqEJoIncPpi2BWSOnG6malcwD/G/YJyE2PQ3TwyMOeyEDkEj/JwhM+PDHIfeNXtEcInZ6GT+NlwOJr6AaH1JD6lEe9cqFBHnd1U7C518eJv05Q+9ITdYKwyDJ24y6Z7IoMY7BBDQN/wHKK3u6bGSjdwPd4I0PVHsBRrb0O+bnSv9zwGNRn2XJ3vFM6UVefdID0lWSFFZQNmzlkErn+ckv0pk4hqJbWqXLb96o+r1BkC6k/XYsZUzXFMAgkcuy3zyPYui0ux7jvGC/qDeQE3IEYAP1AvQvMbyFS9xjSBY2RdiUqKKhMjqKg5i7sNfOugAQt5203ne2lIyDEIZinrGtMNpxlij7VeiyYrc9pu7sWeixWM+xUATyh7c9iHcjeXnpik5EuRS222890/3r3/FWsWfoO1C+XkqVr6Ph5illwvhe7lAX20Wou5LAqRU9LQY8Vrx06u72j1IsAP8IfrbV8LoDjuTw5UlQnqhaNaG7iW1rVvjUtdr1WRuwKsn70c4RGXFgF7ZGLPLR0eoOB7/NJGoZ30g027vE0zpm3evohgSOFmK8L8ixemt5lkoW7JSICFCREJqNnb23M060lXNU4nwymKrz8EojCi3xvxDdsvbCmrnI22OKUeyAh44mPZShX0uFJY2ORihcUrLa9rR/gKmx4PlcnekYyQqdapRLBTENeTrYGpL58xksEYeIJffA7AIhZSI5QG3eoKaWzw73evr8LdBhrC9BxMP/bDGBBl8lHNpt+kCvSvU4SAJ3TKFnVS+6hmvS2iIoP8L+3dcY35qGZ72QlP+vnJBnkp1jBuvSxPWldFSoWcDuZSDR6ZwbexinLTKLW+/uykXElT59yKnvr4RIgok7L4OR6sTHs64zXHpUVstMmPgNHhS0rSIWyX9pB9s5HLjbzA08ZmbNSK/55J8g6WNuiruukknC7Fmo1wI+7CnaSUzEuHPSdMx6idG2aMvasEFKpawNMluOQqRm+FCjECg3WCoQPWWaONhUyLnA64FbzGgde8oPp8JY2cFWvItapNV5n8z738V22Glt9XRKcS4ckx+9j3pkSCjgr2D9d2zcRn8D4Be5CpEHm0FvpykM+vGMcBw+h4frhXfbDufl+9PaSzGBL+bubw0Fx7wnLaUDkfU4OjcTaBQ2req6KwrsEQyjKcyaf2PCnljCALvhi7Mosds3cgGdvGjCtViW8piZ8PvzGjz3OfzY/oELTNzr3W7wqAqtZpK9GdCN2G53vDMb1xomiPbkf35O7bEmI9Tbr7ToewXR+R7r6QYskyN5ReH2pmaPEJLXXrKkDy3v0N2LW19WgwOH3+Mjl79jTxfwcFx9xvwGs5sGop0N5KYa9VPma//+fDPXqw9bkWPBfajL+wP2N+Y2KRncWlsBzzxJjoxtYW8Uau7PmQ9QzIquU+640uKI3T4tNGjc66rnAuUH2C8LusH5mNkVtqHlMB871Wzka4vLu9QuNvrHa3bDpcAm58ESpQ54u2dIY83L3dr57/+/buV9u673O912xvefiWuvUcxr54TVsPnab9Wd4Q2s5MhNZNs+cmUEzuOJ3n6OR3KqiDEZpAQx892MgtZsc37CVi6APdqin9Ro7QO+N6MAs7x/KHbmNhGPJ3ghI30q422HVAS6ErSiA7BC0KwY3L+1pfktp1jZyQI+lGYxrdpcg/d4B0KIX19YCvuCz4TBbSruPPGAOQPP+cyvwh0LHM9+bpdfTRB+/2+L+XO706B387xV/AyGyw4kUjzNZllkvBtTA21rxa9q6xdOkhWYs7V3DYW0X36ng3Bj1cyW+D0whkZYM4iD/BYyhEFaxCGAzgdDgMwxDr8kzIIvg0OB0O4TFUW10ifxtlUsoqWEYeG4PS6TSCszb/wBBtWva2rjZ9YfWzISpJb/HPhriF9cvd8Zd+/OXu+O4JMitl1cVK5MzPjByhYNzjlq6X/HaDwW+/hnHXc2bm/LArO+go6KIRDmVKiyRT1VwuWsif6OkIqGh9q+nAqUtGHuWrjmaTxRA77VEh2RvdpFXV7llhXs3b9xCv29uYMeGH/iA4my9g7PkOtLBaCow8Jb9NubWirOnk+wzlq3I0c0zWqpzrnN1FqHxprVSRZqqq3F0MM37q86mNQz3aDeSJe4rAyXGczRceW34WBsYwCdjTX+VrFsHT4cvnWFfQxdNUixr3NmAv3tLbF/C4vWoRUcGrF8IB+R4zDlhHMUOIturIQncE7c5Arj68uvz51fuf0We339M3r/DxzeWHi99+e/PLxeWH9MObi/dvLn/B4V9+e/XTm4v36Zv3vScWdh10nvi7tL2ja8dLe/wUsIs/f39/cXWVvru8+Ovd5QWLNlgRKWt7KMVvYAxfdmqSttbonP1uEPt73pQZXtYFOdIvd5sDUdyg1FVP7hIm3fuVldu5zWJrvqYuKZWjvooIEGa7yeFksmnxGtoQL6nthocrHxndP3UdlWQmXTelpdIxt9MIUE5+bXQmfWQOCXMqj80QHYu9zRKZu9Mz8mtluFj0NqI221ec9q4lwFbRVQs9T6lUEjoI9wCXjr/XJATcSi8N9mtbIkbAXitKJbxg7/aIyDmYbJ8JR3/Crtwd/58Kbtxhgsn2YM15Ujc2dVfogsePlzf7vGp1M2EIVfbPJIIDy6QCJyQDHdI1qC1ahxv2h6dzl7hwNiwluo77PrCvntUBvg/edbN2PouA7g/RIXXU3vxrP6ijElVS82ohAlL2J3AedicL7lLzOXAt4IbrMm5qCDZuMYKftOBWXAmDRkn0LpyJ77P4YH05qG3QVvTnyUJ0m+h0atxq1K9iPd46RtnZjl5oOrIh3abgJJuNEYkWplaVEa4NfeHv3X25C93ATxhH9ufdJ5eWwhi+EA8j+9YDH6Y804Iv98V3+kA5z1SOPkdPnPFNfQm1T/DsgQTlnBItpBvCP8bkVu4RcU/vzTVmDtSafJSDmoNruQQdOef9vkUMcg4Sxls9kz0OSL1TX1numvzZ/RbezfHjGM4Pz4H218VDe7pF7/BSyFY3KGf3oMg50T/iU/BVuyCX5eLIEX/nbhhuQ+PQEXA6g0nd3cyexHCD+ldDYQDBDvkJcyiUxLs7qAekSkj+R1sp3ZbzNwBE7qZztrHl8nuZzY6xaI7UfLSfThjF1iNxdUqBqpXdCCZuZbcRnLuE6pbit53Ppg9sexz7bIRydBYEmN4d7Pm3EYDWtunQTreb25zOng5V4+Y89hJxLej9zrwDPNCE735jEWh+E7nzQ3eOzW5YeG8r3INpfjMw54MND/2OvdutXiY43Vz1HLmrnkd6l+Y89scAW93nXgpJtN3DtJc90rB7mN71O9N006CrodwRee8nJjvXHHiydckBi9dcVHZ8GrY0Szqc0YvVmLJfR5bXMO5+EZW80osGU9jf8UkHuXC/FZSqGqdprjJMe91VFyu0s41xh/ye3/y8Qfh/oqj/1YJ2zWCcrE54nqemmRGaNjiNHbOszKmQ+dRI3V5FatEIw4EHrv2zOUDZfU1NZP+aXnC/qIDRD/wOT7IPWsoZi8CuazGWlY0gF3PeFHZ81nrCw5Or7zE3naQ8ENYdSD4QuL3ofXhhx7D8jzJaQHZ0ic7UDoEekJU7N/ofS+teATw9KoFvWpg5/7qAHsSsL1cfJHpX8/dBe/d+juBsfm56UB6nw6Py2Pwq9QjmcenQ3yMszemHYs4xOVfhvBzXC0Ouy7374nzAqGuaR/7saNQd6XWNXn85qDtbHW1OqikS+QFz7iOq52+0ccF3E55kZT4NOHpSOYeUonWaYnrH0hT9apoy50/JyYYn/x8AAP//AQAA//8PGUPQFj4AAA==' | base64 -d | gunzip > /opt/bench/bench_agent.py
+            chmod 755 /opt/bench/bench_agent.py
+            fio --version
+            python3 -c 'import boto3; print("boto3", boto3.__version__)' || true
+            touch /var/tmp/bench/ready
+            echo "bench ready"
+        EOT -> null
+      - user_data_replace_on_change          = true -> null
+      - vpc_security_group_ids               = [
+          - "sg-0867b2b8e194bb401",
+        ] -> null
+        # (8 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count            = 4 -> null
+          - threads_per_core      = 1 -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - ebs_block_device {
+          - delete_on_termination = false -> null
+          - device_name           = "/dev/sdf" -> null
+          - encrypted             = true -> null
+          - iops                  = 3000 -> null
+          - kms_key_id            = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+          - tags                  = {
+              - "BenchVolume" = "gp2"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "zenzele-bench-gp2"
+              - "Project"     = "aws-storage-tiering-cost-performance"
+            } -> null
+          - tags_all              = {
+              - "BenchVolume" = "gp2"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "zenzele-bench-gp2"
+              - "Project"     = "aws-storage-tiering-cost-performance"
+            } -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-0a95f034d83073316" -> null
+          - volume_size           = 100 -> null
+          - volume_type           = "gp3" -> null
+            # (1 unchanged attribute hidden)
+        }
+      - ebs_block_device {
+          - delete_on_termination = false -> null
+          - device_name           = "/dev/sdg" -> null
+          - encrypted             = true -> null
+          - iops                  = 6000 -> null
+          - kms_key_id            = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+          - tags                  = {
+              - "BenchVolume" = "gp3"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "zenzele-bench-gp3"
+              - "Project"     = "aws-storage-tiering-cost-performance"
+            } -> null
+          - tags_all              = {
+              - "BenchVolume" = "gp3"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "zenzele-bench-gp3"
+              - "Project"     = "aws-storage-tiering-cost-performance"
+            } -> null
+          - throughput            = 500 -> null
+          - volume_id             = "vol-0af0cac46e461f18f" -> null
+          - volume_size           = 100 -> null
+          - volume_type           = "gp3" -> null
+            # (1 unchanged attribute hidden)
+        }
+      - ebs_block_device {
+          - delete_on_termination = false -> null
+          - device_name           = "/dev/sdh" -> null
+          - encrypted             = true -> null
+          - iops                  = 0 -> null
+          - kms_key_id            = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+          - tags                  = {
+              - "BenchVolume" = "st1"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "zenzele-bench-st1"
+              - "Project"     = "aws-storage-tiering-cost-performance"
+            } -> null
+          - tags_all              = {
+              - "BenchVolume" = "st1"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "zenzele-bench-st1"
+              - "Project"     = "aws-storage-tiering-cost-performance"
+            } -> null
+          - throughput            = 0 -> null
+          - volume_id             = "vol-02107a06909169733" -> null
+          - volume_size           = 125 -> null
+          - volume_type           = "st1" -> null
+            # (1 unchanged attribute hidden)
+        }
+      - ebs_block_device {
+          - delete_on_termination = false -> null
+          - device_name           = "/dev/sdi" -> null
+          - encrypted             = true -> null
+          - iops                  = 0 -> null
+          - kms_key_id            = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+          - tags                  = {
+              - "BenchVolume" = "sc1"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "zenzele-bench-sc1"
+              - "Project"     = "aws-storage-tiering-cost-performance"
+            } -> null
+          - tags_all              = {
+              - "BenchVolume" = "sc1"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "zenzele-bench-sc1"
+              - "Project"     = "aws-storage-tiering-cost-performance"
+            } -> null
+          - throughput            = 0 -> null
+          - volume_id             = "vol-0fab9ddb8d547ec18" -> null
+          - volume_size           = 125 -> null
+          - volume_type           = "sc1" -> null
+            # (1 unchanged attribute hidden)
+        }
+      - ebs_block_device {
+          - delete_on_termination = false -> null
+          - device_name           = "/dev/sdk" -> null
+          - encrypted             = true -> null
+          - iops                  = 3000 -> null
+          - kms_key_id            = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+          - tags                  = {
+              - "BenchVolume" = "small"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "zenzele-bench-small"
+              - "Project"     = "aws-storage-tiering-cost-performance"
+            } -> null
+          - tags_all              = {
+              - "BenchVolume" = "small"
+              - "ManagedBy"   = "terraform"
+              - "Name"        = "zenzele-bench-small"
+              - "Project"     = "aws-storage-tiering-cost-performance"
+            } -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-02d9cdda17912855a" -> null
+          - volume_size           = 1 -> null
+          - volume_type           = "gp3" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 2 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - primary_network_interface {
+          - delete_on_termination = true -> null
+          - network_interface_id  = "eni-09fb13f6747e3884d" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/xvda" -> null
+          - encrypted             = true -> null
+          - iops                  = 3000 -> null
+          - kms_key_id            = "arn:aws:kms:us-east-1:<account-id>:key/fa956852-6a94-48f9-9315-fe5d975d6b38" -> null
+          - tags                  = {} -> null
+          - tags_all              = {
+              - "ManagedBy" = "terraform"
+              - "Project"   = "aws-storage-tiering-cost-performance"
+            } -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-0e20c2a232ce39bf0" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp3" -> null
+        }
+    }
+
+  # aws_internet_gateway.lab will be destroyed
+  - resource "aws_internet_gateway" "lab" {
+      - arn      = "arn:aws:ec2:us-east-1:<account-id>:internet-gateway/igw-0b1a6dc4923ac5844" -> null
+      - id       = "igw-0b1a6dc4923ac5844" -> null
+      - owner_id = "<account-id>" -> null
+      - region   = "us-east-1" -> null
+      - tags     = {
+          - "Name" = "zenzele-tiering-igw"
+        } -> null
+      - tags_all = {
+          - "ManagedBy" = "terraform"
+          - "Name"      = "zenzele-tiering-igw"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+      - vpc_id   = "vpc-0fd16673264ab2874" -> null
+    }
+
+  # aws_route.internet will be destroyed
+  - resource "aws_route" "internet" {
+      - destination_cidr_block      = "0.0.0.0/0" -> null
+      - gateway_id                  = "igw-0b1a6dc4923ac5844" -> null
+      - id                          = "r-rtb-01cc0c9b80015ad401080289494" -> null
+      - origin                      = "CreateRoute" -> null
+      - region                      = "us-east-1" -> null
+      - route_table_id              = "rtb-01cc0c9b80015ad40" -> null
+      - state                       = "active" -> null
+        # (14 unchanged attributes hidden)
+    }
+
+  # aws_route_table.lab will be destroyed
+  - resource "aws_route_table" "lab" {
+      - arn              = "arn:aws:ec2:us-east-1:<account-id>:route-table/rtb-01cc0c9b80015ad40" -> null
+      - id               = "rtb-01cc0c9b80015ad40" -> null
+      - owner_id         = "<account-id>" -> null
+      - propagating_vgws = [] -> null
+      - region           = "us-east-1" -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-0b1a6dc4923ac5844"
+                # (12 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "Name" = "zenzele-tiering-rt"
+        } -> null
+      - tags_all         = {
+          - "ManagedBy" = "terraform"
+          - "Name"      = "zenzele-tiering-rt"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+      - vpc_id           = "vpc-0fd16673264ab2874" -> null
+    }
+
+  # aws_route_table_association.lab will be destroyed
+  - resource "aws_route_table_association" "lab" {
+      - id             = "rtbassoc-074860e7df91cd508" -> null
+      - region         = "us-east-1" -> null
+      - route_table_id = "rtb-01cc0c9b80015ad40" -> null
+      - subnet_id      = "subnet-03006fd4f6ee627e3" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_s3_bucket.lab will be destroyed
+  - resource "aws_s3_bucket" "lab" {
+      - arn                         = "arn:aws:s3:::zenzele-tiering-6fe3235b" -> null
+      - bucket                      = "zenzele-tiering-6fe3235b" -> null
+      - bucket_domain_name          = "zenzele-tiering-6fe3235b.s3.amazonaws.com" -> null
+      - bucket_namespace            = "global" -> null
+      - bucket_region               = "us-east-1" -> null
+      - bucket_regional_domain_name = "zenzele-tiering-6fe3235b.s3.us-east-1.amazonaws.com" -> null
+      - force_destroy               = true -> null
+      - hosted_zone_id              = "Z3AQBSTGFYJSTF" -> null
+      - id                          = "zenzele-tiering-6fe3235b" -> null
+      - object_lock_enabled         = false -> null
+      - policy                      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "s3:*"
+                      - Condition = {
+                          - Bool = {
+                              - "aws:SecureTransport" = "false"
+                            }
+                        }
+                      - Effect    = "Deny"
+                      - Principal = "*"
+                      - Resource  = [
+                          - "arn:aws:s3:::zenzele-tiering-6fe3235b",
+                          - "arn:aws:s3:::zenzele-tiering-6fe3235b/*",
+                        ]
+                      - Sid       = "TLSOnly"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - region                      = "us-east-1" -> null
+      - request_payer               = "BucketOwner" -> null
+      - tags                        = {} -> null
+      - tags_all                    = {
+          - "ManagedBy" = "terraform"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+        # (2 unchanged attributes hidden)
+
+      - grant {
+          - id          = "a672cb3389fb02a3443315c3797c82d61c8bcef5c2a2372511d6a0a5fdc2b0ef" -> null
+          - permissions = [
+              - "FULL_CONTROL",
+            ] -> null
+          - type        = "CanonicalUser" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - lifecycle_rule {
+          - abort_incomplete_multipart_upload_days = 0 -> null
+          - enabled                                = true -> null
+          - id                                     = "pacs-studies-to-glacier-ir-after-90-days" -> null
+          - prefix                                 = "pacs/" -> null
+          - tags                                   = {} -> null
+
+          - transition {
+              - days          = 90 -> null
+              - storage_class = "GLACIER_IR" -> null
+                # (1 unchanged attribute hidden)
+            }
+        }
+      - lifecycle_rule {
+          - abort_incomplete_multipart_upload_days = 0 -> null
+          - enabled                                = true -> null
+          - id                                     = "lab-results-to-glacier-after-30-days-TRAP" -> null
+          - prefix                                 = "lab-results/" -> null
+          - tags                                   = {} -> null
+
+          - transition {
+              - days          = 30 -> null
+              - storage_class = "GLACIER" -> null
+                # (1 unchanged attribute hidden)
+            }
+        }
+      - lifecycle_rule {
+          - abort_incomplete_multipart_upload_days = 0 -> null
+          - enabled                                = true -> null
+          - id                                     = "logs-ia-30-glacier-90-expire-400" -> null
+          - prefix                                 = "logs/" -> null
+          - tags                                   = {} -> null
+
+          - expiration {
+              - days                         = 400 -> null
+              - expired_object_delete_marker = false -> null
+                # (1 unchanged attribute hidden)
+            }
+
+          - transition {
+              - days          = 30 -> null
+              - storage_class = "STANDARD_IA" -> null
+                # (1 unchanged attribute hidden)
+            }
+          - transition {
+              - days          = 90 -> null
+              - storage_class = "GLACIER" -> null
+                # (1 unchanged attribute hidden)
+            }
+        }
+      - lifecycle_rule {
+          - abort_incomplete_multipart_upload_days = 0 -> null
+          - enabled                                = true -> null
+          - id                                     = "nightly-exports-expire-after-35-days" -> null
+          - prefix                                 = "exports/" -> null
+          - tags                                   = {} -> null
+
+          - expiration {
+              - days                         = 35 -> null
+              - expired_object_delete_marker = false -> null
+                # (1 unchanged attribute hidden)
+            }
+        }
+      - lifecycle_rule {
+          - abort_incomplete_multipart_upload_days = 7 -> null
+          - enabled                                = true -> null
+          - id                                     = "abort-incomplete-multipart-uploads-7-days" -> null
+          - tags                                   = {} -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - server_side_encryption_configuration {
+          - rule {
+              - bucket_key_enabled = false -> null
+
+              - apply_server_side_encryption_by_default {
+                  - sse_algorithm     = "AES256" -> null
+                    # (1 unchanged attribute hidden)
+                }
+            }
+        }
+
+      - versioning {
+          - enabled    = false -> null
+          - mfa_delete = false -> null
+        }
+    }
+
+  # aws_s3_bucket_intelligent_tiering_configuration.research will be destroyed
+  - resource "aws_s3_bucket_intelligent_tiering_configuration" "research" {
+      - bucket = "zenzele-tiering-6fe3235b" -> null
+      - id     = "zenzele-tiering-6fe3235b:research-archive-tiers" -> null
+      - name   = "research-archive-tiers" -> null
+      - region = "us-east-1" -> null
+      - status = "Enabled" -> null
+
+      - filter {
+          - prefix = "research/" -> null
+          - tags   = {} -> null
+        }
+
+      - tiering {
+          - access_tier = "ARCHIVE_ACCESS" -> null
+          - days        = 90 -> null
+        }
+      - tiering {
+          - access_tier = "DEEP_ARCHIVE_ACCESS" -> null
+          - days        = 180 -> null
+        }
+    }
+
+  # aws_s3_bucket_lifecycle_configuration.lab will be destroyed
+  - resource "aws_s3_bucket_lifecycle_configuration" "lab" {
+      - bucket                                 = "zenzele-tiering-6fe3235b" -> null
+      - id                                     = "zenzele-tiering-6fe3235b" -> null
+      - region                                 = "us-east-1" -> null
+      - transition_default_minimum_object_size = "all_storage_classes_128K" -> null
+        # (1 unchanged attribute hidden)
+
+      - rule {
+          - id     = "pacs-studies-to-glacier-ir-after-90-days" -> null
+          - status = "Enabled" -> null
+            # (1 unchanged attribute hidden)
+
+          - filter {
+              - prefix = "pacs/" -> null
+            }
+
+          - transition {
+              - days          = 90 -> null
+              - storage_class = "GLACIER_IR" -> null
+            }
+        }
+      - rule {
+          - id     = "lab-results-to-glacier-after-30-days-TRAP" -> null
+          - status = "Enabled" -> null
+            # (1 unchanged attribute hidden)
+
+          - filter {
+              - prefix = "lab-results/" -> null
+            }
+
+          - transition {
+              - days          = 30 -> null
+              - storage_class = "GLACIER" -> null
+            }
+        }
+      - rule {
+          - id     = "logs-ia-30-glacier-90-expire-400" -> null
+          - status = "Enabled" -> null
+            # (1 unchanged attribute hidden)
+
+          - expiration {
+              - days                         = 400 -> null
+              - expired_object_delete_marker = false -> null
+            }
+
+          - filter {
+              - prefix = "logs/" -> null
+            }
+
+          - transition {
+              - days          = 30 -> null
+              - storage_class = "STANDARD_IA" -> null
+            }
+          - transition {
+              - days          = 90 -> null
+              - storage_class = "GLACIER" -> null
+            }
+        }
+      - rule {
+          - id     = "nightly-exports-expire-after-35-days" -> null
+          - status = "Enabled" -> null
+            # (1 unchanged attribute hidden)
+
+          - expiration {
+              - days                         = 35 -> null
+              - expired_object_delete_marker = false -> null
+            }
+
+          - filter {
+              - prefix = "exports/" -> null
+            }
+        }
+      - rule {
+          - id     = "abort-incomplete-multipart-uploads-7-days" -> null
+          - status = "Enabled" -> null
+            # (1 unchanged attribute hidden)
+
+          - abort_incomplete_multipart_upload {
+              - days_after_initiation = 7 -> null
+            }
+
+          - filter {
+                # (1 unchanged attribute hidden)
+            }
+        }
+    }
+
+  # aws_s3_bucket_policy.lab will be destroyed
+  - resource "aws_s3_bucket_policy" "lab" {
+      - bucket = "zenzele-tiering-6fe3235b" -> null
+      - id     = "zenzele-tiering-6fe3235b" -> null
+      - policy = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "s3:*"
+                      - Condition = {
+                          - Bool = {
+                              - "aws:SecureTransport" = "false"
+                            }
+                        }
+                      - Effect    = "Deny"
+                      - Principal = "*"
+                      - Resource  = [
+                          - "arn:aws:s3:::zenzele-tiering-6fe3235b",
+                          - "arn:aws:s3:::zenzele-tiering-6fe3235b/*",
+                        ]
+                      - Sid       = "TLSOnly"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - region = "us-east-1" -> null
+    }
+
+  # aws_s3_bucket_public_access_block.lab will be destroyed
+  - resource "aws_s3_bucket_public_access_block" "lab" {
+      - block_public_acls       = true -> null
+      - block_public_policy     = true -> null
+      - bucket                  = "zenzele-tiering-6fe3235b" -> null
+      - id                      = "zenzele-tiering-6fe3235b" -> null
+      - ignore_public_acls      = true -> null
+      - region                  = "us-east-1" -> null
+      - restrict_public_buckets = true -> null
+    }
+
+  # aws_s3_bucket_server_side_encryption_configuration.lab will be destroyed
+  - resource "aws_s3_bucket_server_side_encryption_configuration" "lab" {
+      - bucket                = "zenzele-tiering-6fe3235b" -> null
+      - id                    = "zenzele-tiering-6fe3235b" -> null
+      - region                = "us-east-1" -> null
+        # (1 unchanged attribute hidden)
+
+      - rule {
+          - blocked_encryption_types = [
+              - "SSE-C",
+            ] -> null
+          - bucket_key_enabled       = false -> null
+
+          - apply_server_side_encryption_by_default {
+              - sse_algorithm     = "AES256" -> null
+                # (1 unchanged attribute hidden)
+            }
+        }
+    }
+
+  # aws_s3_directory_bucket.express will be destroyed
+  - resource "aws_s3_directory_bucket" "express" {
+      - arn             = "arn:aws:s3express:us-east-1:<account-id>:bucket/zenzele-express-6fe3235b--use1-az4--x-s3" -> null
+      - bucket          = "zenzele-express-6fe3235b--use1-az4--x-s3" -> null
+      - data_redundancy = "SingleAvailabilityZone" -> null
+      - force_destroy   = true -> null
+      - id              = "zenzele-express-6fe3235b--use1-az4--x-s3" -> null
+      - region          = "us-east-1" -> null
+      - tags_all        = {
+          - "ManagedBy" = "terraform"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+      - type            = "Directory" -> null
+
+      - location {
+          - name = "use1-az4" -> null
+          - type = "AvailabilityZone" -> null
+        }
+    }
+
+  # aws_s3control_storage_lens_configuration.lab will be destroyed
+  - resource "aws_s3control_storage_lens_configuration" "lab" {
+      - account_id = "<account-id>" -> null
+      - arn        = "arn:aws:s3:us-east-1:<account-id>:storage-lens/zenzele-tiering-lens" -> null
+      - config_id  = "zenzele-tiering-lens" -> null
+      - id         = "<account-id>:zenzele-tiering-lens" -> null
+      - region     = "us-east-1" -> null
+      - tags       = {} -> null
+      - tags_all   = {
+          - "ManagedBy" = "terraform"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+
+      - storage_lens_configuration {
+          - enabled          = true -> null
+            # (1 unchanged attribute hidden)
+
+          - account_level {
+              - bucket_level {
+                }
+            }
+
+          - include {
+              - buckets = [
+                  - "arn:aws:s3:::zenzele-tiering-6fe3235b",
+                ] -> null
+              - regions = [] -> null
+            }
+        }
+    }
+
+  # aws_security_group.bench will be destroyed
+  - resource "aws_security_group" "bench" {
+      - arn                    = "arn:aws:ec2:us-east-1:<account-id>:security-group/sg-0867b2b8e194bb401" -> null
+      - description            = "Bench instance - no inbound at all, outbound for SSM, package repos and S3" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "Outbound: SSM, dnf repositories, S3 and S3 Express"
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+            },
+        ] -> null
+      - id                     = "sg-0867b2b8e194bb401" -> null
+      - ingress                = [] -> null
+      - name                   = "zenzele-tiering-bench-sg" -> null
+      - owner_id               = "<account-id>" -> null
+      - region                 = "us-east-1" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "Name" = "zenzele-tiering-bench-sg"
+        } -> null
+      - tags_all               = {
+          - "ManagedBy" = "terraform"
+          - "Name"      = "zenzele-tiering-bench-sg"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+      - vpc_id                 = "vpc-0fd16673264ab2874" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_subnet.lab will be destroyed
+  - resource "aws_subnet" "lab" {
+      - arn                                            = "arn:aws:ec2:us-east-1:<account-id>:subnet/subnet-03006fd4f6ee627e3" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "us-east-1c" -> null
+      - availability_zone_id                           = "use1-az4" -> null
+      - cidr_block                                     = "10.29.1.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-03006fd4f6ee627e3" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "<account-id>" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - region                                         = "us-east-1" -> null
+      - tags                                           = {
+          - "Name" = "zenzele-tiering-public-use1-az4"
+        } -> null
+      - tags_all                                       = {
+          - "ManagedBy" = "terraform"
+          - "Name"      = "zenzele-tiering-public-use1-az4"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+      - vpc_id                                         = "vpc-0fd16673264ab2874" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # aws_volume_attachment.bench["gp2"] will be destroyed
+  - resource "aws_volume_attachment" "bench" {
+      - device_name = "/dev/sdf" -> null
+      - id          = "vai-1264854420" -> null
+      - instance_id = "i-02fd158d191d0afa7" -> null
+      - region      = "us-east-1" -> null
+      - volume_id   = "vol-0a95f034d83073316" -> null
+    }
+
+  # aws_volume_attachment.bench["gp3"] will be destroyed
+  - resource "aws_volume_attachment" "bench" {
+      - device_name = "/dev/sdg" -> null
+      - id          = "vai-379328311" -> null
+      - instance_id = "i-02fd158d191d0afa7" -> null
+      - region      = "us-east-1" -> null
+      - volume_id   = "vol-0af0cac46e461f18f" -> null
+    }
+
+  # aws_volume_attachment.bench["sc1"] will be destroyed
+  - resource "aws_volume_attachment" "bench" {
+      - device_name = "/dev/sdi" -> null
+      - id          = "vai-507244220" -> null
+      - instance_id = "i-02fd158d191d0afa7" -> null
+      - region      = "us-east-1" -> null
+      - volume_id   = "vol-0fab9ddb8d547ec18" -> null
+    }
+
+  # aws_volume_attachment.bench["small"] will be destroyed
+  - resource "aws_volume_attachment" "bench" {
+      - device_name = "/dev/sdk" -> null
+      - id          = "vai-2509980932" -> null
+      - instance_id = "i-02fd158d191d0afa7" -> null
+      - region      = "us-east-1" -> null
+      - volume_id   = "vol-02d9cdda17912855a" -> null
+    }
+
+  # aws_volume_attachment.bench["st1"] will be destroyed
+  - resource "aws_volume_attachment" "bench" {
+      - device_name = "/dev/sdh" -> null
+      - id          = "vai-2511314058" -> null
+      - instance_id = "i-02fd158d191d0afa7" -> null
+      - region      = "us-east-1" -> null
+      - volume_id   = "vol-02107a06909169733" -> null
+    }
+
+  # aws_vpc.lab will be destroyed
+  - resource "aws_vpc" "lab" {
+      - arn                                  = "arn:aws:ec2:us-east-1:<account-id>:vpc/vpc-0fd16673264ab2874" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "10.29.0.0/16" -> null
+      - default_network_acl_id               = "acl-018a0450582cbdfa9" -> null
+      - default_route_table_id               = "rtb-0abdd96da456daaf0" -> null
+      - default_security_group_id            = "sg-0613053d1827d1c55" -> null
+      - dhcp_options_id                      = "dopt-005c03a6fb6933432" -> null
+      - enable_dns_hostnames                 = true -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-0fd16673264ab2874" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-0abdd96da456daaf0" -> null
+      - owner_id                             = "<account-id>" -> null
+      - region                               = "us-east-1" -> null
+      - tags                                 = {
+          - "Name" = "zenzele-tiering-vpc"
+        } -> null
+      - tags_all                             = {
+          - "ManagedBy" = "terraform"
+          - "Name"      = "zenzele-tiering-vpc"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # aws_vpc_endpoint.s3 will be destroyed
+  - resource "aws_vpc_endpoint" "s3" {
+      - arn                        = "arn:aws:ec2:us-east-1:<account-id>:vpc-endpoint/vpce-0f5c74bd96e86d823" -> null
+      - cidr_blocks                = [
+          - "16.15.160.0/19",
+          - "16.182.0.0/16",
+          - "18.34.0.0/19",
+          - "52.216.0.0/15",
+          - "54.231.0.0/16",
+          - "3.5.0.0/19",
+          - "18.34.232.0/21",
+          - "16.15.192.0/18",
+          - "16.15.156.0/22",
+        ] -> null
+      - dns_entry                  = [] -> null
+      - id                         = "vpce-0f5c74bd96e86d823" -> null
+      - ip_address_type            = "ipv4" -> null
+      - network_interface_ids      = [] -> null
+      - owner_id                   = "<account-id>" -> null
+      - policy                     = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "*"
+                      - Effect    = "Allow"
+                      - Principal = "*"
+                      - Resource  = "*"
+                    },
+                ]
+              - Version   = "2008-10-17"
+            }
+        ) -> null
+      - prefix_list_id             = "pl-63a5400a" -> null
+      - private_dns_enabled        = false -> null
+      - region                     = "us-east-1" -> null
+      - requester_managed          = false -> null
+      - route_table_ids            = [
+          - "rtb-01cc0c9b80015ad40",
+        ] -> null
+      - security_group_ids         = [] -> null
+      - service_name               = "com.amazonaws.us-east-1.s3" -> null
+      - service_region             = "us-east-1" -> null
+      - state                      = "available" -> null
+      - subnet_ids                 = [] -> null
+      - tags                       = {
+          - "Name" = "zenzele-tiering-s3-gateway"
+        } -> null
+      - tags_all                   = {
+          - "ManagedBy" = "terraform"
+          - "Name"      = "zenzele-tiering-s3-gateway"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+      - vpc_endpoint_type          = "Gateway" -> null
+      - vpc_id                     = "vpc-0fd16673264ab2874" -> null
+        # (2 unchanged attributes hidden)
+
+      - dns_options {
+          - dns_record_ip_type                             = "service-defined" -> null
+          - private_dns_only_for_inbound_resolver_endpoint = false -> null
+          - private_dns_specified_domains                  = [] -> null
+            # (1 unchanged attribute hidden)
+        }
+    }
+
+  # aws_vpc_security_group_egress_rule.all will be destroyed
+  - resource "aws_vpc_security_group_egress_rule" "all" {
+      - arn                    = "arn:aws:ec2:us-east-1:<account-id>:security-group-rule/sgr-039804d7ad9f8c6e2" -> null
+      - cidr_ipv4              = "0.0.0.0/0" -> null
+      - description            = "Outbound: SSM, dnf repositories, S3 and S3 Express" -> null
+      - id                     = "sgr-039804d7ad9f8c6e2" -> null
+      - ip_protocol            = "-1" -> null
+      - region                 = "us-east-1" -> null
+      - security_group_id      = "sg-0867b2b8e194bb401" -> null
+      - security_group_rule_id = "sgr-039804d7ad9f8c6e2" -> null
+      - tags_all               = {
+          - "ManagedBy" = "terraform"
+          - "Project"   = "aws-storage-tiering-cost-performance"
+        } -> null
+    }
+
+Plan: 0 to add, 0 to change, 33 to destroy.
+
+Changes to Outputs:
+  - agent_sha256           = "9de5007a020669998084b3f07f86d1b3da87487b168b1ae21b3f1194fe1c265a" -> null
+  - az                     = {
+      - id   = "use1-az4"
+      - name = "us-east-1c"
+    } -> null
+  - bench_instance_id      = "i-02fd158d191d0afa7" -> null
+  - export_snapshot_id     = "snap-00f0879b3f2daf437" -> null
+  - express_bucket         = "zenzele-express-6fe3235b--use1-az4--x-s3" -> null
+  - instance_type          = "c7g.xlarge" -> null
+  - lab_bucket             = "zenzele-tiering-6fe3235b" -> null
+  - region                 = "us-east-1" -> null
+  - storage_lens_config_id = "zenzele-tiering-lens" -> null
+  - volumes                = {
+      - gp2   = {
+          - id         = "vol-0a95f034d83073316"
+          - iops       = 3000
+          - size       = 100
+          - throughput = 125
+          - type       = "gp3"
+        }
+      - gp3   = {
+          - id         = "vol-0af0cac46e461f18f"
+          - iops       = 6000
+          - size       = 100
+          - throughput = 500
+          - type       = "gp3"
+        }
+      - sc1   = {
+          - id         = "vol-0fab9ddb8d547ec18"
+          - iops       = 0
+          - size       = 125
+          - throughput = 0
+          - type       = "sc1"
+        }
+      - small = {
+          - id         = "vol-02d9cdda17912855a"
+          - iops       = 3000
+          - size       = 1
+          - throughput = 125
+          - type       = "gp3"
+        }
+      - st1   = {
+          - id         = "vol-02107a06909169733"
+          - iops       = 0
+          - size       = 125
+          - throughput = 0
+          - type       = "st1"
+        }
+    } -> null
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: 
+aws_volume_attachment.bench["sc1"]: Destroying... [id=vai-507244220]
+aws_volume_attachment.bench["st1"]: Destroying... [id=vai-2511314058]
+aws_volume_attachment.bench["small"]: Destroying... [id=vai-2509980932]
+aws_s3control_storage_lens_configuration.lab: Destroying... [id=<account-id>:zenzele-tiering-lens]
+aws_s3_bucket_server_side_encryption_configuration.lab: Destroying... [id=zenzele-tiering-6fe3235b]
+aws_s3_bucket_intelligent_tiering_configuration.research: Destroying... [id=zenzele-tiering-6fe3235b:research-archive-tiers]
+aws_iam_role_policy.bench_buckets: Destroying... [id=zenzele-tiering-bench-role:zenzele-tiering-lab-buckets]
+aws_volume_attachment.bench["gp3"]: Destroying... [id=vai-379328311]
+aws_ebs_snapshot.export[0]: Destroying... [id=snap-00f0879b3f2daf437]
+aws_s3_bucket_lifecycle_configuration.lab: Destroying... [id=zenzele-tiering-6fe3235b]
+aws_s3_bucket_server_side_encryption_configuration.lab: Destruction complete after 1s
+aws_s3_bucket_policy.lab: Destroying... [id=zenzele-tiering-6fe3235b]
+aws_s3control_storage_lens_configuration.lab: Destruction complete after 1s
+aws_vpc_endpoint.s3: Destroying... [id=vpce-0f5c74bd96e86d823]
+aws_s3_bucket_intelligent_tiering_configuration.research: Destruction complete after 1s
+aws_iam_role_policy.bench_buckets: Destruction complete after 1s
+aws_volume_attachment.bench["gp2"]: Destroying... [id=vai-1264854420]
+aws_s3_directory_bucket.express: Destroying... [id=zenzele-express-6fe3235b--use1-az4--x-s3]
+aws_ebs_snapshot.export[0]: Destruction complete after 1s
+aws_s3_bucket_policy.lab: Destruction complete after 0s
+aws_s3_bucket_public_access_block.lab: Destroying... [id=zenzele-tiering-6fe3235b]
+aws_s3_bucket_lifecycle_configuration.lab: Destruction complete after 2s
+aws_s3_bucket_public_access_block.lab: Destruction complete after 1s
+aws_s3_bucket.lab: Destroying... [id=zenzele-tiering-6fe3235b]
+aws_s3_bucket.lab: Destruction complete after 3s
+aws_s3_directory_bucket.express: Destruction complete after 4s
+aws_volume_attachment.bench["st1"]: Still destroying... [id=vai-2511314058, 00m10s elapsed]
+aws_volume_attachment.bench["gp3"]: Still destroying... [id=vai-379328311, 00m10s elapsed]
+aws_volume_attachment.bench["small"]: Still destroying... [id=vai-2509980932, 00m10s elapsed]
+aws_volume_attachment.bench["sc1"]: Still destroying... [id=vai-507244220, 00m10s elapsed]
+aws_vpc_endpoint.s3: Still destroying... [id=vpce-0f5c74bd96e86d823, 00m10s elapsed]
+aws_volume_attachment.bench["gp2"]: Still destroying... [id=vai-1264854420, 00m10s elapsed]
+aws_volume_attachment.bench["small"]: Destruction complete after 12s
+aws_volume_attachment.bench["sc1"]: Destruction complete after 12s
+aws_volume_attachment.bench["gp3"]: Destruction complete after 12s
+aws_vpc_endpoint.s3: Destruction complete after 12s
+aws_volume_attachment.bench["st1"]: Destruction complete after 15s
+aws_volume_attachment.bench["gp2"]: Destruction complete after 15s
+aws_ebs_volume.bench["st1"]: Destroying... [id=vol-02107a06909169733]
+aws_ebs_volume.bench["sc1"]: Destroying... [id=vol-0fab9ddb8d547ec18]
+aws_ebs_volume.bench["gp2"]: Destroying... [id=vol-0a95f034d83073316]
+aws_ebs_volume.bench["small"]: Destroying... [id=vol-02d9cdda17912855a]
+aws_ebs_volume.bench["gp3"]: Destroying... [id=vol-0af0cac46e461f18f]
+aws_instance.bench[0]: Destroying... [id=i-02fd158d191d0afa7]
+aws_ebs_volume.bench["gp3"]: Still destroying... [id=vol-0af0cac46e461f18f, 00m10s elapsed]
+aws_ebs_volume.bench["st1"]: Still destroying... [id=vol-02107a06909169733, 00m10s elapsed]
+aws_ebs_volume.bench["gp2"]: Still destroying... [id=vol-0a95f034d83073316, 00m10s elapsed]
+aws_ebs_volume.bench["sc1"]: Still destroying... [id=vol-0fab9ddb8d547ec18, 00m10s elapsed]
+aws_ebs_volume.bench["small"]: Still destroying... [id=vol-02d9cdda17912855a, 00m10s elapsed]
+aws_instance.bench[0]: Still destroying... [id=i-02fd158d191d0afa7, 00m10s elapsed]
+aws_ebs_volume.bench["gp3"]: Destruction complete after 11s
+aws_ebs_volume.bench["sc1"]: Destruction complete after 13s
+aws_ebs_volume.bench["small"]: Destruction complete after 13s
+aws_ebs_volume.bench["gp2"]: Destruction complete after 13s
+aws_ebs_volume.bench["st1"]: Destruction complete after 13s
+aws_instance.bench[0]: Still destroying... [id=i-02fd158d191d0afa7, 00m20s elapsed]
+aws_instance.bench[0]: Destruction complete after 21s
+aws_vpc_security_group_egress_rule.all: Destroying... [id=sgr-039804d7ad9f8c6e2]
+aws_iam_instance_profile.bench: Destroying... [id=zenzele-tiering-bench-profile]
+aws_iam_role_policy_attachment.bench_ssm: Destroying... [id=zenzele-tiering-bench-role/arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore]
+aws_route.internet: Destroying... [id=r-rtb-01cc0c9b80015ad401080289494]
+aws_route_table_association.lab: Destroying... [id=rtbassoc-074860e7df91cd508]
+aws_iam_role_policy_attachment.bench_ssm: Destruction complete after 1s
+aws_iam_instance_profile.bench: Destruction complete after 2s
+aws_iam_role.bench: Destroying... [id=zenzele-tiering-bench-role]
+aws_route_table_association.lab: Destruction complete after 2s
+aws_subnet.lab: Destroying... [id=subnet-03006fd4f6ee627e3]
+aws_vpc_security_group_egress_rule.all: Destruction complete after 2s
+aws_security_group.bench: Destroying... [id=sg-0867b2b8e194bb401]
+aws_route.internet: Destruction complete after 2s
+aws_internet_gateway.lab: Destroying... [id=igw-0b1a6dc4923ac5844]
+aws_route_table.lab: Destroying... [id=rtb-01cc0c9b80015ad40]
+aws_iam_role.bench: Destruction complete after 1s
+aws_subnet.lab: Destruction complete after 1s
+aws_security_group.bench: Destruction complete after 1s
+aws_internet_gateway.lab: Destruction complete after 2s
+aws_route_table.lab: Destruction complete after 2s
+aws_vpc.lab: Destroying... [id=vpc-0fd16673264ab2874]
+aws_vpc.lab: Destruction complete after 1s
+Releasing state lock. This may take a few moments...
+
+Destroy complete! Resources: 33 destroyed.

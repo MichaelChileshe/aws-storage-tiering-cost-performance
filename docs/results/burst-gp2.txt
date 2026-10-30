@@ -1,0 +1,18 @@
+== gp2 vol-0a95f034d83073316 gp2 100 GiB: baseline 300 IOPS, burst 3000
+   BurstBalance before: 100.0
+   starting a 240 s 4 KiB random-read run (queue depth 32) through SSM ...
+   2026-10-30T09:46:00+02:00  BurstBalance 100.00 %  (min 100.00)
+   2026-10-30T09:47:00+02:00  BurstBalance 100.00 %  (min 100.00)
+   2026-10-30T09:48:00+02:00  BurstBalance 100.00 %  (min 100.00)
+   2026-10-30T09:49:00+02:00  BurstBalance 100.00 %  (min 100.00)
+   2026-10-30T09:50:00+02:00  BurstBalance 100.00 %  (min 100.00)
+   2026-10-30T09:51:00+02:00  BurstBalance  99.00 %  (min 99.00)
+   2026-10-30T09:52:00+02:00  BurstBalance  96.00 %  (min 96.00)
+   2026-10-30T09:53:00+02:00  BurstBalance  93.00 %  (min 93.00)
+   2026-10-30T09:54:00+02:00  BurstBalance  90.00 %  (min 90.00)
+   run finished: 3,012 IOPS for 240 s, p99 11.076 ms; waiting up to 8 min for the last datapoints ...
+
+   BurstBalance 100.0 % -> lowest 90.0 %: down 10.0 points (expected from IOPS: 12.06)
+   net spend 2712.4 credits/s -> empty in about 1792 s from the lowest point; a full bucket lasts 1991 s at this rate
+   slope over the run: None points/min
+saved build/results/burst-gp2.json

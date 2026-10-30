@@ -1,0 +1,94 @@
+{
+  "name": "Zenzele Health storage estate (model for the cost study)",
+  "units": "GiB = 2^30 bytes (AWS bills storage per GB-month on the same basis); KiB = 1024 bytes",
+  "trap_drill": {
+    "desc": "Lab results: one small file per result",
+    "objects": 10000000,
+    "object_kib": 20,
+    "bundle_mib": 512
+  },
+  "s3": [
+    {
+      "id": "pacs",
+      "desc": "PACS imaging archive (DICOM studies)",
+      "gib": 40960,
+      "avg_object_mib": 4,
+      "current": "STANDARD",
+      "needs_millisecond_access": true,
+      "age_share": {"0_30": 0.04, "30_90": 0.08, "90_plus": 0.88},
+      "monthly_read_share_of_old": 0.02,
+      "options": ["STANDARD", "LIFECYCLE_GIR_AFTER_90", "INTELLIGENT_TIERING"]
+    },
+    {
+      "id": "lab_results",
+      "desc": "Lab results, one 20 KiB file each",
+      "gib": 2048,
+      "avg_object_kib": 20,
+      "current": "STANDARD",
+      "needs_millisecond_access": true,
+      "age_share": {"0_30": 0.03, "30_90": 0.06, "90_plus": 0.91},
+      "monthly_read_share_of_old": 0.01,
+      "bundle_mib": 512,
+      "options": ["STANDARD", "LIFECYCLE_GLACIER_AFTER_30", "INTELLIGENT_TIERING", "BUNDLE_TO_GIR"]
+    },
+    {
+      "id": "logs",
+      "desc": "Application and audit logs",
+      "gib": 8192,
+      "avg_object_mib": 5,
+      "current": "STANDARD",
+      "needs_millisecond_access": false,
+      "age_share": {"0_30": 0.08, "30_90": 0.16, "90_plus": 0.76},
+      "monthly_ingest_gib": 700,
+      "options": ["STANDARD", "LIFECYCLE_IA_30_GLACIER_90"]
+    },
+    {
+      "id": "exports",
+      "desc": "Nightly database exports (nobody deletes them today)",
+      "daily_gib": 8,
+      "current_retained_days": 730,
+      "needed_days": 35,
+      "current": "KEEP_ALL",
+      "options": ["KEEP_ALL", "EXPIRE_AFTER_35"]
+    }
+  ],
+  "ebs": [
+    {
+      "id": "app_db",
+      "desc": "Application databases",
+      "count": 12,
+      "gib": 500,
+      "current": {"type": "gp2"},
+      "need": {"iops": 3000, "mibps": 250, "durability_99_999": false},
+      "options": ["gp2", "gp3", "io2"]
+    },
+    {
+      "id": "emr_db",
+      "desc": "Electronic medical record primary database",
+      "count": 1,
+      "gib": 2000,
+      "current": {"type": "io2", "iops": 20000},
+      "need": {"iops": 20000, "mibps": 500, "durability_99_999": true},
+      "options": ["io2", "gp3"]
+    },
+    {
+      "id": "export_staging",
+      "desc": "Export staging volumes (large sequential dumps, never booted from)",
+      "count": 2,
+      "gib": 2048,
+      "current": {"type": "gp2"},
+      "need": {"sequential_only": true, "dump_gib": 600, "window_hours": 1},
+      "options": ["gp2", "gp3", "st1", "sc1"]
+    }
+  ],
+  "snapshots": {
+    "id": "compliance_snapshots",
+    "desc": "Monthly database snapshots kept 7 years",
+    "count": 84,
+    "full_gib": 6000,
+    "incremental_gib_each": 600,
+    "restores_per_year": 1,
+    "current": "standard",
+    "options": ["standard", "archive"]
+  }
+}

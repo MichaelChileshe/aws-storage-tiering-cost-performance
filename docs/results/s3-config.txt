@@ -1,0 +1,30 @@
+== lifecycle on zenzele-tiering-6fe3235b  (TransitionDefaultMinimumObjectSize = all_storage_classes_128K)
+   pacs-studies-to-glacier-ir-after-90-days      Enabled  pacs/          90 d -> GLACIER_IR
+   lab-results-to-glacier-after-30-days-TRAP     Enabled  lab-results/   30 d -> GLACIER
+   logs-ia-30-glacier-90-expire-400              Enabled  logs/          30 d -> STANDARD_IA; 90 d -> GLACIER; expire after 400 d
+   nightly-exports-expire-after-35-days          Enabled  exports/       expire after 35 d
+   abort-incomplete-multipart-uploads-7-days     Enabled  (whole bucket) abort incomplete MPU after 7 d
+
+== Intelligent-Tiering configuration research-archive-tiers (Enabled), prefix research/: ARCHIVE_ACCESS after 90 d, DEEP_ARCHIVE_ACCESS after 180 d
+
+== Storage Lens configurations in this account (Home Region us-east-1 here): default-account-dashboard, zenzele-tiering-lens
+   zenzele-tiering-lens: enabled=True, scope ['arn:aws:s3:::zenzele-tiering-6fe3235b'], advanced metrics: none (free tier)
+   (metrics appear once a day; a new dashboard can take up to 48 h - nothing to read during this lab)
+
+== objects under bench/ in zenzele-tiering-6fe3235b
+   bench/GLACIER/4KiB.bin                        4096  GLACIER
+   bench/GLACIER/8MiB.bin                     8388608  GLACIER
+   bench/GLACIER_IR/4KiB.bin                     4096  GLACIER_IR
+   bench/GLACIER_IR/8MiB.bin                  8388608  GLACIER_IR
+   bench/INTELLIGENT_TIERING/4KiB.bin            4096  INTELLIGENT_TIERING
+   bench/INTELLIGENT_TIERING/8MiB.bin         8388608  INTELLIGENT_TIERING
+   bench/STANDARD/4KiB.bin                       4096  STANDARD
+   bench/STANDARD/8MiB.bin                    8388608  STANDARD
+   bench/STANDARD_IA/4KiB.bin                    4096  STANDARD_IA
+   bench/STANDARD_IA/8MiB.bin                 8388608  STANDARD_IA
+
+== objects in the directory bucket zenzele-express-6fe3235b--use1-az4--x-s3
+   bench/EXPRESS_ONEZONE/8MiB.bin             8388608  EXPRESS_ONEZONE
+   bench/EXPRESS_ONEZONE/4KiB.bin                4096  EXPRESS_ONEZONE
+
+saved build/results/s3-config.json

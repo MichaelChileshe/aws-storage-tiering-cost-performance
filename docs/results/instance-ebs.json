@@ -1,0 +1,14 @@
+{
+ "instance_type": "c7g.xlarge",
+ "ebs_optimized_support": "default",
+ "nvme_support": "required",
+ "ebs_optimized_info": {
+  "BaselineBandwidthInMbps": 1250,
+  "BaselineThroughputInMBps": 156.25039999999998,
+  "BaselineIops": 6000,
+  "MaximumBandwidthInMbps": 10000,
+  "MaximumThroughputInMBps": 1250.0,
+  "MaximumIops": 40000
+ },
+ "fetched_utc": "2026-10-30T07:30:08.094Z"
+}

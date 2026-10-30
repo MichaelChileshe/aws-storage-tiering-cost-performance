@@ -1,0 +1,123 @@
+
+== Instance EBS limits
+  c7g.xlarge baseline: Mbps / MB/s / IOPS                                                        1250 / 156.25039999999998 / 6000
+  c7g.xlarge maximum: Mbps / MB/s / IOPS                                                         10000 / 1250.0 / 40000
+  fio / engine / boto3 / AZ ID                                                                   fio-3.32 / libaio / 1.40.31 / use1-az4
+
+== fio
+  gp2 prefill 128 MiB seq write MiB/s                                                            735.6
+  gp3 prefill 128 MiB seq write MiB/s                                                            1,084.8
+  io2 prefill 128 MiB seq write MiB/s                                                            2,782.6
+  st1 prefill 128 MiB seq write MiB/s                                                            33.3
+  sc1 prefill 128 MiB seq write MiB/s                                                            9.7
+  base gp2 (gp2 100GiB 300iops) randread4k: IOPS / MiB/s / p50 ms / p99 ms                       2,998 / 11.7 / 10.682 / 11.207
+  base gp2 (gp2 100GiB 300iops) randwrite4k: IOPS / MiB/s / p50 ms / p99 ms                      2,998 / 11.7 / 10.682 / 10.813
+  base gp2 (gp2 100GiB 300iops) seqread1m: IOPS / MiB/s / p50 ms / p99 ms                        127 / 128.1 / 119.013 / 126.353
+  base gp3 (gp3 100GiB 3000iops 125MiB/s) randread4k: IOPS / MiB/s / p50 ms / p99 ms             2,998 / 11.7 / 10.682 / 10.813
+  base gp3 (gp3 100GiB 3000iops 125MiB/s) randwrite4k: IOPS / MiB/s / p50 ms / p99 ms            2,998 / 11.7 / 10.682 / 10.945
+  base gp3 (gp3 100GiB 3000iops 125MiB/s) seqread1m: IOPS / MiB/s / p50 ms / p99 ms              124 / 125.1 / 126.353 / 128.451
+  base io2 (io2 100GiB 4000iops) randread4k: IOPS / MiB/s / p50 ms / p99 ms                      3,998 / 15.6 / 8.028 / 8.29
+  base io2 (io2 100GiB 4000iops) randwrite4k: IOPS / MiB/s / p50 ms / p99 ms                     3,998 / 15.6 / 8.028 / 8.159
+  base io2 (io2 100GiB 4000iops) seqread1m: IOPS / MiB/s / p50 ms / p99 ms                       999 / 1,000.0 / 15.139 / 16.908
+  base sc1 (sc1 125GiB) randread4k: IOPS / MiB/s / p50 ms / p99 ms                               10 / 0.0 / 2902.458 / 5469.372
+  base sc1 (sc1 125GiB) randwrite4k: IOPS / MiB/s / p50 ms / p99 ms                              10 / 0.0 / 3003.122 / 5536.481
+  base sc1 (sc1 125GiB) seqread1m: IOPS / MiB/s / p50 ms / p99 ms                                9 / 9.7 / 1602.224 / 2768.241
+  base st1 (st1 125GiB) randread4k: IOPS / MiB/s / p50 ms / p99 ms                               31 / 0.1 / 1002.439 / 1719.665
+  base st1 (st1 125GiB) randwrite4k: IOPS / MiB/s / p50 ms / p99 ms                              31 / 0.1 / 1002.439 / 1719.665
+  base st1 (st1 125GiB) seqread1m: IOPS / MiB/s / p50 ms / p99 ms                                32 / 33.0 / 484.442 / 725.615
+  migrate-after gp2 (gp3 100GiB 3000iops 125MiB/s) randread4k: IOPS / MiB/s / p50 ms / p99 ms    2,998 / 11.7 / 10.682 / 10.945
+  migrate-after gp2 (gp3 100GiB 3000iops 125MiB/s) randwrite4k: IOPS / MiB/s / p50 ms / p99 ms   2,998 / 11.7 / 10.682 / 10.813
+  migrate-after gp2 (gp3 100GiB 3000iops 125MiB/s) seqread1m: IOPS / MiB/s / p50 ms / p99 ms     124 / 125.2 / 121.111 / 130.548
+  migrate-during gp2 (gp3 100GiB 3000iops 125MiB/s) randread4k: IOPS / MiB/s / p50 ms / p99 ms   2,998 / 11.7 / 10.682 / 11.076
+  migrate-during gp2 (gp3 100GiB 3000iops 125MiB/s) randwrite4k: IOPS / MiB/s / p50 ms / p99 ms  2,998 / 11.7 / 10.682 / 10.813
+  migrate-during gp2 (gp3 100GiB 3000iops 125MiB/s) seqread1m: IOPS / MiB/s / p50 ms / p99 ms    124 / 125.2 / 121.111 / 131.596
+  tuned-after gp3 (gp3 100GiB 6000iops 500MiB/s) randread4k: IOPS / MiB/s / p50 ms / p99 ms      5,998 / 23.4 / 5.341 / 5.734
+  tuned-after gp3 (gp3 100GiB 6000iops 500MiB/s) randwrite4k: IOPS / MiB/s / p50 ms / p99 ms     5,998 / 23.4 / 5.341 / 5.865
+  tuned-after gp3 (gp3 100GiB 6000iops 500MiB/s) seqread1m: IOPS / MiB/s / p50 ms / p99 ms       500 / 500.4 / 30.278 / 32.899
+  tuned-during gp3 (gp3 100GiB 6000iops 500MiB/s) randread4k: IOPS / MiB/s / p50 ms / p99 ms     5,998 / 23.4 / 5.341 / 5.669
+  tuned-during gp3 (gp3 100GiB 6000iops 500MiB/s) randwrite4k: IOPS / MiB/s / p50 ms / p99 ms    5,998 / 23.4 / 5.341 / 6.586
+  tuned-during gp3 (gp3 100GiB 6000iops 500MiB/s) seqread1m: IOPS / MiB/s / p50 ms / p99 ms      500 / 500.4 / 30.278 / 32.899
+  drain gp2 240s 4k randread: IOPS / p99 ms                                                      3,012 / 11.076
+
+== gp2 burst
+  BurstBalance before / lowest / decline (pct points)                                            100.0 / 90.0 / 10.0
+  expected decline from measured IOPS / slope pts per min                                        12.06 / None
+  net credits/s / est s to empty from lowest / full bucket lasts s                               2712.4 / 1792 / 1991
+
+== Elastic Volumes
+  gp2 migrate: change                                                                            gp2 300/None -> gp3 3000/125
+  gp2 migrate: AWS StartTime / EndTime / state                                                   2026-10-30T08:07:38+00:00 / 2026-10-30T08:12:41+00:00 / completed
+  gp2 migrate: states seen                                                                       08:08:08 optimizing 3%, 08:12:51 completed 100%
+  gp2 migrate: fio during ran while                                                              optimizing -> optimizing
+  gp3 tuned: change                                                                              gp3 3000/125 -> gp3 6000/500
+  gp3 tuned: AWS StartTime / EndTime / state                                                     2026-10-30T08:17:10+00:00 / 2026-10-30T08:22:23+00:00 / completed
+  gp3 tuned: states seen                                                                         08:17:38 optimizing 0%, 08:22:34 completed 100%
+  gp3 tuned: fio during ran while                                                                optimizing -> optimizing
+
+== S3 latency
+  base STANDARD 4KiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                                  82.63 / 27.03 31.14 32.86 / 27.14 32.97
+  base STANDARD_IA 4KiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                               42.44 / 29.7 34.66 62.82 / 29.81 62.92
+  base INTELLIGENT_TIERING 4KiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                       42.41 / 27.62 35.77 81.3 / 27.73 81.4
+  base GLACIER_IR 4KiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                                36.24 / 26.92 30.17 68.66 / 27.03 68.77
+  base GLACIER 4KiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                                   InvalidObjectState
+  base EXPRESS_ONEZONE 4KiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                           65.22 / 6.12 6.45 6.68 / 6.2 6.78
+  base STANDARD 8MiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                                  129.51 / 24.51 30.72 33.8 / 89.63 93.19
+  base STANDARD_IA 8MiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                               111.8 / 27.06 30.44 34.28 / 89.35 90.94
+  base INTELLIGENT_TIERING 8MiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                       128.83 / 22.64 26.82 27.5 / 88.59 119.89
+  base GLACIER_IR 8MiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                                135.03 / 22.92 28.09 29.74 / 89.96 98.73
+  base GLACIER 8MiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                                   InvalidObjectState
+  base EXPRESS_ONEZONE 8MiB: PUT / TTFB p50 p90 p99 / total p50 p99 ms                           82.41 / 4.96 5.25 5.53 / 55.98 58.18
+
+== Glacier restore
+  GET before restore                                                                             InvalidObjectState
+  tier / expedited unavailable                                                                   Expedited / False
+  requested / first seen restored                                                                2026-10-30T08:28:16.726Z / 2026-10-30T08:29:34.648Z
+  GET after restore                                                                              True
+
+== S3 config
+  TransitionDefaultMinimumObjectSize                                                             all_storage_classes_128K
+  lifecycle rules                                                                                5
+  Storage Lens configurations                                                                    default-account-dashboard, zenzele-tiering-lens
+  objects in bench/ by class                                                                     GLACIER, GLACIER_IR, INTELLIGENT_TIERING, STANDARD, STANDARD_IA
+
+== Snapshot archive
+  full size bytes / 90-day minimum USD                                                           209715200 / 0.0072
+  archive requested / TieringStartTime                                                           2026-10-30T07:50:19.319Z / 2026-10-30T07:50:19.224000+00:00
+  last seen: tier / status / progress / completed                                                2026-10-30T08:35:23.996Z: archive / archival-completed / 100 / 2026-10-30T07:51:49.136000+00:00
+
+== Trap drill
+  10,000,000 x 20 KiB STANDARD (keep): USD/month / one-time / payback                            4.39 / 0.00 / -
+  10,000,000 x 20 KiB GLACIER via lifecycle: USD/month / one-time / payback                      3.54 / 500.00 / 590.4
+  10,000,000 x 20 KiB GLACIER_IR via lifecycle: USD/month / one-time / payback                   4.88 / 100.00 / never
+  10,000,000 x 20 KiB STANDARD_IA via lifecycle: USD/month / one-time / payback                  15.26 / 100.00 / never
+  10,000,000 x 20 KiB INTELLIGENT_TIERING: USD/month / one-time / payback                        4.39 / 0.00 / never
+  10,000,000 x 20 KiB BUNDLE 512 MiB -> GLACIER: USD/month / one-time / payback                  0.69 / 4.02 / 1.1
+
+== Cost model
+  pacs current: STANDARD USD/month                                                               942.08
+  pacs recommended: INTELLIGENT_TIERING USD/month                                                249.04
+  lab_results current: STANDARD USD/month                                                        47.10
+  lab_results recommended: BUNDLE_TO_GIR USD/month                                               9.96
+  logs current: STANDARD USD/month                                                               188.42
+  logs recommended: LIFECYCLE_IA_30_GLACIER_90 USD/month                                         62.84
+  exports current: KEEP_ALL USD/month                                                            134.32
+  exports recommended: EXPIRE_AFTER_35 USD/month                                                 6.44
+  app_db current: gp2 USD/month                                                                  600.00
+  app_db recommended: gp3 USD/month                                                              540.00
+  emr_db current+recommended: io2 USD/month                                                      1,550.00
+  export_staging current: gp2 USD/month                                                          409.60
+  export_staging recommended: st1 USD/month                                                      184.32
+  compliance_snapshots current+recommended: standard USD/month                                   2,790.00
+  TOTAL before / after / saving USD/month (%) / one-time                                         6,661.52 / 5,392.59 / 1,268.93 (19.0%) / 213.04
+
+== Terraform
+  tf-apply-base.txt                                                                              Apply complete! Resources: 21 added, 0 changed, 0 destroyed.
+  tf-apply-bench.txt                                                                             Apply complete! Resources: 13 added, 0 changed, 0 destroyed.
+  tf-apply-io2-off.txt                                                                           Apply complete! Resources: 0 added, 0 changed, 2 destroyed.
+  tf-apply-migrate.txt                                                                           Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+  tf-apply-snapshot.txt                                                                          Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+  tf-apply-tune.txt                                                                              Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+  tf-destroy.txt                                                                                 Destroy complete! Resources: 33 destroyed.
+  tf-plan-base.txt                                                                               Plan: 21 to add, 0 to change, 0 to destroy.
+
+saved build/results/summary.csv

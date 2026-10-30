@@ -1,0 +1,13 @@
+#!/bin/bash
+# Boot script for the bench instance (rendered by Terraform): fio for the EBS tests, boto3 for
+# the S3 tests, and the bench agent that both run through SSM.
+set -euxo pipefail
+dnf install -y fio
+dnf install -y python3-boto3 || echo "python3-boto3 not installed - the S3 tests will report it"
+mkdir -p /opt/bench /var/tmp/bench
+echo '${agent_gz_b64}' | base64 -d | gunzip > /opt/bench/bench_agent.py
+chmod 755 /opt/bench/bench_agent.py
+fio --version
+python3 -c 'import boto3; print("boto3", boto3.__version__)' || true
+touch /var/tmp/bench/ready
+echo "bench ready"

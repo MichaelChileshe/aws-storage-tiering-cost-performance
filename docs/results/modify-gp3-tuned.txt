@@ -1,0 +1,26 @@
+== gp3 vol-0af0cac46e461f18f: gp3 3000 IOPS 125 MiB/s -> gp3 6000 IOPS 500 MiB/s; started 2026-10-30T08:17:10+00:00
+   2026-10-30T08:17:38.810Z  optimizing progress 0 %
+   running fio while the volume is optimizing ...
+== gp3: vol-0af0cac46e461f18f gp3 100 GiB iops=6000 throughput=500  [tuned-during] (about 69 s) ...
+  still running (15 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (33 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (49 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (65 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+   randread4k   5,998 IOPS  23.4 MiB/s  p50 5.34 ms  p99 5.67 ms
+   randwrite4k  5,998 IOPS  23.4 MiB/s  p50 5.34 ms  p99 6.59 ms
+   seqread1m    500 IOPS  500.4 MiB/s  p50 30.28 ms  p99 32.90 ms
+   spec: 6000 IOPS / 500 MiB/s provisioned, no credits
+   2026-10-30T08:22:34.720Z  completed  progress 100 %
+   completed; running fio on the final configuration ...
+== gp3: vol-0af0cac46e461f18f gp3 100 GiB iops=6000 throughput=500  [tuned-after] (about 69 s) ...
+  still running (18 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (37 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (53 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (69 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+   randread4k   5,998 IOPS  23.4 MiB/s  p50 5.34 ms  p99 5.73 ms
+   randwrite4k  5,998 IOPS  23.4 MiB/s  p50 5.34 ms  p99 5.87 ms
+   seqread1m    500 IOPS  500.4 MiB/s  p50 30.28 ms  p99 32.90 ms
+   spec: 6000 IOPS / 500 MiB/s provisioned, no credits
+
+   AWS StartTime 2026-10-30T08:17:10+00:00  EndTime 2026-10-30T08:22:23+00:00  state completed
+saved build/results/modify-gp3-tuned.json

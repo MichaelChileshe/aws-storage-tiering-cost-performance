@@ -1,0 +1,94 @@
+Recomputed 2026-10-30 with the corrected transition-price lookup, from the same day's Price List records (see ../debugging-journey.md).
+The output exactly as it ran is in as-run/cost-model.txt.
+
+== prices from build/results/prices.json (cached)
+
+== TRAP DRILL: 10,000,000 lab results of 20 KiB = 190.7 GiB
+   option                         USD/month  one-time USD  saves/month  payback months
+   STANDARD (keep)                     4.39          0.00         0.00               -
+   GLACIER via lifecycle               3.54        300.00         0.85           354.2
+   GLACIER_IR via lifecycle            4.88        200.00        -0.50           never
+   STANDARD_IA via lifecycle          15.26        100.00       -10.87           never
+   INTELLIGENT_TIERING                 4.39          0.00         0.00           never
+   BUNDLE 512 MiB -> GLACIER           0.69          4.01         3.70             1.1
+   - STANDARD (keep): 190.7 GiB of data
+   - GLACIER via lifecycle: data + 381.5 GiB of per-object metadata (32 KiB at Glacier + 8 KiB at Standard); one transition request per object; 90-day minimum; restores take minutes to hours; needs transition_default_minimum_object_size = varies_by_storage_class (the default blocks it)
+   - GLACIER_IR via lifecycle: billed at the 128 KiB minimum: 1,220.7 GiB; 90-day minimum; blocked by the 128 KiB default
+   - STANDARD_IA via lifecycle: billed at the 128 KiB minimum: 1,220.7 GiB; 30-day minimum; blocked by the 128 KiB default
+   - INTELLIGENT_TIERING: objects under 128 KiB are not monitored and stay in Frequent Access: no monitoring fee, no saving
+   - BUNDLE 512 MiB -> GLACIER: 382 bundles; one-time = reading every small object once + 382 transitions
+
+== ESTATE: monthly cost per option (USD, list prices)
+
+   [S3] pacs: PACS imaging archive (DICOM studies)
+     STANDARD                           942.08/month  one-time       0.00  ok  CURRENT 
+        10,485,760 objects, all in Standard
+     LIFECYCLE_GIR_AFTER_90             278.86/month  one-time     184.55  ok          
+        older than 90 days -> Glacier IR (ms access, retrieval fee per GB read, 90-day minimum)
+     INTELLIGENT_TIERING                249.04/month  one-time     104.86  ok          -> RECOMMENDED
+        FA/IA/Archive Instant by last access; monitoring 26.21/month for 10,485,760 objects; no retrieval fees
+
+   [S3] lab_results: Lab results, one 20 KiB file each
+     STANDARD                            47.10/month  one-time       0.00  ok  CURRENT 
+        107,374,182 objects, all in Standard
+     LIFECYCLE_GLACIER_AFTER_30          38.28/month  one-time   3,124.59  NO          
+        104,152,957 objects x 40 KiB metadata; restores take minutes to hours - FAILS the millisecond-access requirement; objects < 128 KiB only move if the 128 KiB default is overridden
+     INTELLIGENT_TIERING                 47.10/month  one-time       0.00  ok          
+        objects < 128 KiB: never monitored or moved, billed at Frequent Access (= no saving)
+     BUNDLE_TO_GIR                        9.96/month  one-time      41.74  ok          -> RECOMMENDED
+        results older than 30 days packed into 3,973 x 512 MiB objects in Glacier IR; one result = one byte-range GET via an index
+
+   [S3] logs: Application and audit logs
+     STANDARD                           188.42/month  one-time       0.00  ok  CURRENT 
+        1,677,722 objects, all in Standard
+     LIFECYCLE_IA_30_GLACIER_90          59.97/month  one-time      40.94  ok          -> RECOMMENDED
+        30 d -> Standard-IA, 90 d -> Glacier Flexible; includes 5.73/month of transition requests for new logs
+
+   [S3] exports: Nightly database exports (nobody deletes them today)
+     KEEP_ALL                           134.32/month  one-time       0.00  ok  CURRENT 
+        5,840 GiB in Standard (730 daily exports)
+     EXPIRE_AFTER_35                      6.44/month  one-time       0.00  ok          -> RECOMMENDED
+        280 GiB in Standard (35 daily exports)
+
+   [EBS] app_db: Application databases
+     gp2                                600.00/month  one-time       0.00  NO  CURRENT 
+        baseline 1500 IOPS < 3000 needed; 3000 only while credits last
+        lab: gp2 100 GiB burst 2,998 of 3,000 IOPS (100%)
+     gp3                                540.00/month  one-time       0.00  ok          -> RECOMMENDED
+        3,000 IOPS / 250 MiB/s provisioned
+        lab: gp3 base 2,998 of 3,000 IOPS (100%); gp3 base 125 of 125 MiB/s (100%); gp3 tuned-after 5,998 of 6,000 IOPS, info only (100%); gp3 tuned-after 500 of 500 MiB/s, info only (100%)
+     io2                              3,090.00/month  one-time       0.00  ok          
+        3,000 IOPS provisioned, 99.999% durability
+        lab: io2 3,998 of 4,000 IOPS (100%)
+
+   [EBS] emr_db: Electronic medical record primary database
+     io2                              1,550.00/month  one-time       0.00  ok  CURRENT -> RECOMMENDED
+        20,000 IOPS provisioned, 99.999% durability
+        lab: io2 3,998 of 4,000 IOPS (100%)
+     gp3                                260.00/month  one-time       0.00  NO          
+        20,000 IOPS / 500 MiB/s provisioned - gp3 is designed for 99.8-99.9% durability, requirement is 99.999% (io2)
+        lab: gp3 base 2,998 of 3,000 IOPS (100%); gp3 base 125 of 125 MiB/s (100%); gp3 tuned-after 5,998 of 6,000 IOPS, info only (100%); gp3 tuned-after 500 of 500 MiB/s, info only (100%)
+
+   [EBS] export_staging: Export staging volumes (large sequential dumps, never booted from)
+     gp2                                409.60/month  one-time       0.00  ok  CURRENT 
+        baseline 6144 IOPS, up to 250 MiB/s
+        lab: gp2 100 GiB burst 2,998 of 3,000 IOPS (100%)
+     gp3                                331.33/month  one-time       0.00  ok          
+        3,000 IOPS / 171 MiB/s provisioned
+        lab: gp3 base 2,998 of 3,000 IOPS (100%); gp3 base 125 of 125 MiB/s (100%); gp3 tuned-after 5,998 of 6,000 IOPS, info only (100%); gp3 tuned-after 500 of 500 MiB/s, info only (100%)
+     st1                                184.32/month  one-time       0.00  ok          -> RECOMMENDED
+        needs 171 MiB/s: baseline 80.0, burst 500.0 MiB/s (bucket ~2048 GiB of credits)
+        lab: st1 125 GiB 33.0 of 30.5 MiB/s burst (108%); 33.0 of 4.9 MiB/s baseline (673%)
+     sc1                                 61.44/month  one-time       0.00  NO          
+        needs 171 MiB/s: baseline 24.0, burst 160.0 MiB/s (bucket ~2048 GiB of credits) - too slow
+        lab: sc1 125 GiB 9.7 of 9.8 MiB/s burst (99%); 9.7 of 1.5 MiB/s baseline (645%)
+
+   [Snapshots] compliance_snapshots: Monthly database snapshots kept 7 years
+     standard                         2,790.00/month  one-time       0.00  ok  CURRENT -> RECOMMENDED
+        incremental chain: 55,800 GiB stored
+     archive                          6,315.00/month  one-time       0.00  ok          
+        archive keeps FULL copies: 504,000 GiB; pays only when each snapshot's unique data is more than 25% of a full copy (here 10%); 90-day minimum; restore up to 72 h
+
+== TOTAL: 6,661.52 USD/month today -> 5,389.72 USD/month recommended (saves 1,271.80/month, 19.1%), one-time 187.53 USD
+   this lab: c7g.xlarge 0.1450 USD/h; the io2 volume 0.3733 USD/h
+saved build/results/trap.json, cost-model.json, cost-model.csv

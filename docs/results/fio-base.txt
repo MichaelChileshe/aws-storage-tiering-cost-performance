@@ -1,0 +1,61 @@
+== gp2: vol-0a95f034d83073316 gp2 100 GiB iops=300 throughput=None  [base] (about 69 s) ...
+  still running (18 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (35 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (50 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (66 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+   prefill 128 MiB sequential write: 735.6 MiB/s (0.6 s)
+   randread4k   2,998 IOPS  11.7 MiB/s  p50 10.68 ms  p99 11.21 ms
+   randwrite4k  2,998 IOPS  11.7 MiB/s  p50 10.68 ms  p99 10.81 ms
+   seqread1m    127 IOPS  128.1 MiB/s  p50 119.01 ms  p99 126.35 ms
+   spec: 3 IOPS/GiB = 300 baseline, bursts to 3000 on credits; up to 128 MiB/s
+== gp3: vol-0af0cac46e461f18f gp3 100 GiB iops=3000 throughput=125  [base] (about 69 s) ...
+  still running (18 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (35 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (51 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (67 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+   prefill 128 MiB sequential write: 1,084.8 MiB/s (0.5 s)
+   randread4k   2,998 IOPS  11.7 MiB/s  p50 10.68 ms  p99 10.81 ms
+   randwrite4k  2,998 IOPS  11.7 MiB/s  p50 10.68 ms  p99 10.95 ms
+   seqread1m    124 IOPS  125.1 MiB/s  p50 126.35 ms  p99 128.45 ms
+   spec: 3000 IOPS / 125 MiB/s provisioned, no credits
+== io2: vol-02dff15f3201cc344 io2 100 GiB iops=4000 throughput=None  [base] (about 69 s) ...
+  still running (19 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (35 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (51 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (66 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+   prefill 128 MiB sequential write: 2,782.6 MiB/s (0.4 s)
+   randread4k   3,998 IOPS  15.6 MiB/s  p50 8.03 ms  p99 8.29 ms
+   randwrite4k  3,998 IOPS  15.6 MiB/s  p50 8.03 ms  p99 8.16 ms
+   seqread1m    999 IOPS  1,000.0 MiB/s  p50 15.14 ms  p99 16.91 ms
+   spec: 4000 IOPS provisioned
+== st1: vol-02107a06909169733 st1 125 GiB iops=None throughput=None  [base] (about 69 s) ...
+  still running (18 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (35 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (50 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (67 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+   prefill 128 MiB sequential write: 33.3 MiB/s (4.2 s)
+   randread4k   31 IOPS  0.1 MiB/s  p50 1,002.44 ms  p99 1,719.66 ms
+   randwrite4k  31 IOPS  0.1 MiB/s  p50 1,002.44 ms  p99 1,719.66 ms
+   seqread1m    32 IOPS  33.0 MiB/s  p50 484.44 ms  p99 725.62 ms
+   spec: 40 MiB/s per TiB baseline = 4.9, burst 250/TiB = 30.5 MiB/s; every I/O up to 1 MiB costs a 1 MiB credit
+== sc1: vol-0fab9ddb8d547ec18 sc1 125 GiB iops=None throughput=None  [base] (about 69 s) ...
+  still running (18 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (35 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (50 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (67 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (83 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+   prefill 128 MiB sequential write: 9.7 MiB/s (13.7 s)
+   randread4k   10 IOPS  0.0 MiB/s  p50 2,902.46 ms  p99 5,469.37 ms
+   randwrite4k  10 IOPS  0.0 MiB/s  p50 3,003.12 ms  p99 5,536.48 ms
+   seqread1m    9 IOPS  9.7 MiB/s  p50 1,602.22 ms  p99 2,768.24 ms
+   spec: 12 MiB/s per TiB baseline = 1.5, burst 80/TiB = 9.8 MiB/s; every I/O up to 1 MiB costs a 1 MiB credit
+
+== base: summary (IOPS, MiB/s, completion latency p99 in ms)
+   role  type  GiB | randread IOPS     p99 | randwrite IOPS     p99 | seqread MiB/s     p99
+   gp2   gp2   100 |         2,998   11.21 |          2,998   10.81 |         128.1  126.35
+   gp3   gp3   100 |         2,998   10.81 |          2,998   10.95 |         125.1  128.45
+   io2   io2   100 |         3,998    8.29 |          3,998    8.16 |       1,000.0   16.91
+   st1   st1   125 |            31 1,719.66 |             31 1,719.66 |          33.0  725.62
+   sc1   sc1   125 |            10 5,469.37 |             10 5,536.48 |           9.7 2,768.24
+
+saved build/results/fio-base.json (+ fio.jsonl)

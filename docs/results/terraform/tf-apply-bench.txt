@@ -1,0 +1,523 @@
+Acquiring state lock. This may take a few moments...
+data.aws_ssm_parameter.al2023_arm: Reading...
+data.aws_availability_zone.lab: Reading...
+aws_iam_role.bench: Refreshing state... [id=zenzele-tiering-bench-role]
+aws_vpc.lab: Refreshing state... [id=vpc-0fd16673264ab2874]
+aws_s3_directory_bucket.express: Refreshing state... [id=zenzele-express-6fe3235b--use1-az4--x-s3]
+aws_s3_bucket.lab: Refreshing state... [id=zenzele-tiering-6fe3235b]
+data.aws_availability_zone.lab: Read complete after 1s [id=us-east-1c]
+data.aws_ssm_parameter.al2023_arm: Read complete after 1s [id=/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64]
+aws_iam_role_policy_attachment.bench_ssm: Refreshing state... [id=zenzele-tiering-bench-role/arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore]
+aws_iam_instance_profile.bench: Refreshing state... [id=zenzele-tiering-bench-profile]
+aws_route_table.lab: Refreshing state... [id=rtb-01cc0c9b80015ad40]
+aws_internet_gateway.lab: Refreshing state... [id=igw-0b1a6dc4923ac5844]
+aws_security_group.bench: Refreshing state... [id=sg-0867b2b8e194bb401]
+aws_subnet.lab: Refreshing state... [id=subnet-03006fd4f6ee627e3]
+aws_vpc_endpoint.s3: Refreshing state... [id=vpce-0f5c74bd96e86d823]
+aws_route.internet: Refreshing state... [id=r-rtb-01cc0c9b80015ad401080289494]
+aws_vpc_security_group_egress_rule.all: Refreshing state... [id=sgr-039804d7ad9f8c6e2]
+aws_route_table_association.lab: Refreshing state... [id=rtbassoc-074860e7df91cd508]
+aws_s3_bucket_public_access_block.lab: Refreshing state... [id=zenzele-tiering-6fe3235b]
+aws_s3control_storage_lens_configuration.lab: Refreshing state... [id=<account-id>:zenzele-tiering-lens]
+aws_s3_bucket_intelligent_tiering_configuration.research: Refreshing state... [id=zenzele-tiering-6fe3235b:research-archive-tiers]
+aws_iam_role_policy.bench_buckets: Refreshing state... [id=zenzele-tiering-bench-role:zenzele-tiering-lab-buckets]
+aws_s3_bucket_server_side_encryption_configuration.lab: Refreshing state... [id=zenzele-tiering-6fe3235b]
+aws_s3_bucket_lifecycle_configuration.lab: Refreshing state... [id=zenzele-tiering-6fe3235b]
+aws_s3_bucket_policy.lab: Refreshing state... [id=zenzele-tiering-6fe3235b]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_ebs_volume.bench["gp2"] will be created
+  + resource "aws_ebs_volume" "bench" {
+      + arn               = (known after apply)
+      + availability_zone = "us-east-1c"
+      + create_time       = (known after apply)
+      + encrypted         = true
+      + final_snapshot    = false
+      + id                = (known after apply)
+      + iops              = (known after apply)
+      + kms_key_id        = (known after apply)
+      + region            = "us-east-1"
+      + size              = 100
+      + snapshot_id       = (known after apply)
+      + tags              = {
+          + "BenchVolume" = "gp2"
+          + "Name"        = "zenzele-bench-gp2"
+        }
+      + tags_all          = {
+          + "BenchVolume" = "gp2"
+          + "ManagedBy"   = "terraform"
+          + "Name"        = "zenzele-bench-gp2"
+          + "Project"     = "aws-storage-tiering-cost-performance"
+        }
+      + throughput        = (known after apply)
+      + type              = "gp2"
+    }
+
+  # aws_ebs_volume.bench["gp3"] will be created
+  + resource "aws_ebs_volume" "bench" {
+      + arn               = (known after apply)
+      + availability_zone = "us-east-1c"
+      + create_time       = (known after apply)
+      + encrypted         = true
+      + final_snapshot    = false
+      + id                = (known after apply)
+      + iops              = 3000
+      + kms_key_id        = (known after apply)
+      + region            = "us-east-1"
+      + size              = 100
+      + snapshot_id       = (known after apply)
+      + tags              = {
+          + "BenchVolume" = "gp3"
+          + "Name"        = "zenzele-bench-gp3"
+        }
+      + tags_all          = {
+          + "BenchVolume" = "gp3"
+          + "ManagedBy"   = "terraform"
+          + "Name"        = "zenzele-bench-gp3"
+          + "Project"     = "aws-storage-tiering-cost-performance"
+        }
+      + throughput        = 125
+      + type              = "gp3"
+    }
+
+  # aws_ebs_volume.bench["io2"] will be created
+  + resource "aws_ebs_volume" "bench" {
+      + arn               = (known after apply)
+      + availability_zone = "us-east-1c"
+      + create_time       = (known after apply)
+      + encrypted         = true
+      + final_snapshot    = false
+      + id                = (known after apply)
+      + iops              = 4000
+      + kms_key_id        = (known after apply)
+      + region            = "us-east-1"
+      + size              = 100
+      + snapshot_id       = (known after apply)
+      + tags              = {
+          + "BenchVolume" = "io2"
+          + "Name"        = "zenzele-bench-io2"
+        }
+      + tags_all          = {
+          + "BenchVolume" = "io2"
+          + "ManagedBy"   = "terraform"
+          + "Name"        = "zenzele-bench-io2"
+          + "Project"     = "aws-storage-tiering-cost-performance"
+        }
+      + throughput        = (known after apply)
+      + type              = "io2"
+    }
+
+  # aws_ebs_volume.bench["sc1"] will be created
+  + resource "aws_ebs_volume" "bench" {
+      + arn               = (known after apply)
+      + availability_zone = "us-east-1c"
+      + create_time       = (known after apply)
+      + encrypted         = true
+      + final_snapshot    = false
+      + id                = (known after apply)
+      + iops              = (known after apply)
+      + kms_key_id        = (known after apply)
+      + region            = "us-east-1"
+      + size              = 125
+      + snapshot_id       = (known after apply)
+      + tags              = {
+          + "BenchVolume" = "sc1"
+          + "Name"        = "zenzele-bench-sc1"
+        }
+      + tags_all          = {
+          + "BenchVolume" = "sc1"
+          + "ManagedBy"   = "terraform"
+          + "Name"        = "zenzele-bench-sc1"
+          + "Project"     = "aws-storage-tiering-cost-performance"
+        }
+      + throughput        = (known after apply)
+      + type              = "sc1"
+    }
+
+  # aws_ebs_volume.bench["small"] will be created
+  + resource "aws_ebs_volume" "bench" {
+      + arn               = (known after apply)
+      + availability_zone = "us-east-1c"
+      + create_time       = (known after apply)
+      + encrypted         = true
+      + final_snapshot    = false
+      + id                = (known after apply)
+      + iops              = 3000
+      + kms_key_id        = (known after apply)
+      + region            = "us-east-1"
+      + size              = 1
+      + snapshot_id       = (known after apply)
+      + tags              = {
+          + "BenchVolume" = "small"
+          + "Name"        = "zenzele-bench-small"
+        }
+      + tags_all          = {
+          + "BenchVolume" = "small"
+          + "ManagedBy"   = "terraform"
+          + "Name"        = "zenzele-bench-small"
+          + "Project"     = "aws-storage-tiering-cost-performance"
+        }
+      + throughput        = 125
+      + type              = "gp3"
+    }
+
+  # aws_ebs_volume.bench["st1"] will be created
+  + resource "aws_ebs_volume" "bench" {
+      + arn               = (known after apply)
+      + availability_zone = "us-east-1c"
+      + create_time       = (known after apply)
+      + encrypted         = true
+      + final_snapshot    = false
+      + id                = (known after apply)
+      + iops              = (known after apply)
+      + kms_key_id        = (known after apply)
+      + region            = "us-east-1"
+      + size              = 125
+      + snapshot_id       = (known after apply)
+      + tags              = {
+          + "BenchVolume" = "st1"
+          + "Name"        = "zenzele-bench-st1"
+        }
+      + tags_all          = {
+          + "BenchVolume" = "st1"
+          + "ManagedBy"   = "terraform"
+          + "Name"        = "zenzele-bench-st1"
+          + "Project"     = "aws-storage-tiering-cost-performance"
+        }
+      + throughput        = (known after apply)
+      + type              = "st1"
+    }
+
+  # aws_instance.bench[0] will be created
+  + resource "aws_instance" "bench" {
+      + ami                                  = "ami-0702f1d5548f1fe1e"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = true
+      + enable_primary_ipv6                  = (known after apply)
+      + force_destroy                        = false
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = "zenzele-tiering-bench-profile"
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_lifecycle                   = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "c7g.xlarge"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = (known after apply)
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_group_id                   = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + region                               = "us-east-1"
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + spot_instance_request_id             = (known after apply)
+      + subnet_id                            = "subnet-03006fd4f6ee627e3"
+      + tags                                 = {
+          + "Name" = "zenzele-bench"
+        }
+      + tags_all                             = {
+          + "ManagedBy" = "terraform"
+          + "Name"      = "zenzele-bench"
+          + "Project"   = "aws-storage-tiering-cost-performance"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = <<-EOT
+            #!/bin/bash
+            # Boot script for the bench instance (rendered by Terraform): fio for the EBS tests, boto3 for
+            # the S3 tests, and the bench agent that both run through SSM.
+            set -euxo pipefail
+            dnf install -y fio
+            dnf install -y python3-boto3 || echo "python3-boto3 not installed - the S3 tests will report it"
+            mkdir -p /opt/bench /var/tmp/bench
+            echo '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' | base64 -d | gunzip > /opt/bench/bench_agent.py
+            chmod 755 /opt/bench/bench_agent.py
+            fio --version
+            python3 -c 'import boto3; print("boto3", boto3.__version__)' || true
+            touch /var/tmp/bench/ready
+            echo "bench ready"
+        EOT
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = true
+      + vpc_security_group_ids               = [
+          + "sg-0867b2b8e194bb401",
+        ]
+
+      + capacity_reservation_specification (known after apply)
+
+      + cpu_options (known after apply)
+
+      + ebs_block_device (known after apply)
+
+      + enclave_options (known after apply)
+
+      + ephemeral_block_device (known after apply)
+
+      + instance_market_options (known after apply)
+
+      + maintenance_options (known after apply)
+
+      + metadata_options {
+          + http_endpoint               = "enabled"
+          + http_protocol_ipv6          = "disabled"
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = "required"
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + network_interface (known after apply)
+
+      + primary_network_interface (known after apply)
+
+      + private_dns_name_options (known after apply)
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = true
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + tags_all              = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = (known after apply)
+          + volume_type           = "gp3"
+        }
+
+      + secondary_network_interface (known after apply)
+    }
+
+  # aws_volume_attachment.bench["gp2"] will be created
+  + resource "aws_volume_attachment" "bench" {
+      + device_name = "/dev/sdf"
+      + id          = (known after apply)
+      + instance_id = (known after apply)
+      + region      = "us-east-1"
+      + volume_id   = (known after apply)
+    }
+
+  # aws_volume_attachment.bench["gp3"] will be created
+  + resource "aws_volume_attachment" "bench" {
+      + device_name = "/dev/sdg"
+      + id          = (known after apply)
+      + instance_id = (known after apply)
+      + region      = "us-east-1"
+      + volume_id   = (known after apply)
+    }
+
+  # aws_volume_attachment.bench["io2"] will be created
+  + resource "aws_volume_attachment" "bench" {
+      + device_name = "/dev/sdj"
+      + id          = (known after apply)
+      + instance_id = (known after apply)
+      + region      = "us-east-1"
+      + volume_id   = (known after apply)
+    }
+
+  # aws_volume_attachment.bench["sc1"] will be created
+  + resource "aws_volume_attachment" "bench" {
+      + device_name = "/dev/sdi"
+      + id          = (known after apply)
+      + instance_id = (known after apply)
+      + region      = "us-east-1"
+      + volume_id   = (known after apply)
+    }
+
+  # aws_volume_attachment.bench["small"] will be created
+  + resource "aws_volume_attachment" "bench" {
+      + device_name = "/dev/sdk"
+      + id          = (known after apply)
+      + instance_id = (known after apply)
+      + region      = "us-east-1"
+      + volume_id   = (known after apply)
+    }
+
+  # aws_volume_attachment.bench["st1"] will be created
+  + resource "aws_volume_attachment" "bench" {
+      + device_name = "/dev/sdh"
+      + id          = (known after apply)
+      + instance_id = (known after apply)
+      + region      = "us-east-1"
+      + volume_id   = (known after apply)
+    }
+
+Plan: 13 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + bench_instance_id      = (known after apply)
+  ~ volumes                = {
+      + gp2   = {
+          + id         = (known after apply)
+          + iops       = (known after apply)
+          + size       = 100
+          + throughput = (known after apply)
+          + type       = "gp2"
+        }
+      + gp3   = {
+          + id         = (known after apply)
+          + iops       = 3000
+          + size       = 100
+          + throughput = 125
+          + type       = "gp3"
+        }
+      + io2   = {
+          + id         = (known after apply)
+          + iops       = 4000
+          + size       = 100
+          + throughput = (known after apply)
+          + type       = "io2"
+        }
+      + sc1   = {
+          + id         = (known after apply)
+          + iops       = (known after apply)
+          + size       = 125
+          + throughput = (known after apply)
+          + type       = "sc1"
+        }
+      + small = {
+          + id         = (known after apply)
+          + iops       = 3000
+          + size       = 1
+          + throughput = 125
+          + type       = "gp3"
+        }
+      + st1   = {
+          + id         = (known after apply)
+          + iops       = (known after apply)
+          + size       = 125
+          + throughput = (known after apply)
+          + type       = "st1"
+        }
+    }
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: 
+aws_ebs_volume.bench["small"]: Creating...
+aws_ebs_volume.bench["sc1"]: Creating...
+aws_ebs_volume.bench["gp2"]: Creating...
+aws_ebs_volume.bench["st1"]: Creating...
+aws_ebs_volume.bench["gp3"]: Creating...
+aws_ebs_volume.bench["io2"]: Creating...
+aws_instance.bench[0]: Creating...
+aws_ebs_volume.bench["sc1"]: Still creating... [00m10s elapsed]
+aws_ebs_volume.bench["gp2"]: Still creating... [00m10s elapsed]
+aws_ebs_volume.bench["small"]: Still creating... [00m10s elapsed]
+aws_ebs_volume.bench["st1"]: Still creating... [00m10s elapsed]
+aws_ebs_volume.bench["gp3"]: Still creating... [00m10s elapsed]
+aws_ebs_volume.bench["io2"]: Still creating... [00m10s elapsed]
+aws_instance.bench[0]: Still creating... [00m10s elapsed]
+aws_ebs_volume.bench["gp2"]: Creation complete after 13s [id=vol-0a95f034d83073316]
+aws_ebs_volume.bench["gp3"]: Creation complete after 13s [id=vol-0af0cac46e461f18f]
+aws_ebs_volume.bench["sc1"]: Creation complete after 13s [id=vol-0fab9ddb8d547ec18]
+aws_ebs_volume.bench["small"]: Creation complete after 13s [id=vol-02d9cdda17912855a]
+aws_ebs_volume.bench["st1"]: Creation complete after 13s [id=vol-02107a06909169733]
+aws_ebs_volume.bench["io2"]: Creation complete after 13s [id=vol-02dff15f3201cc344]
+aws_instance.bench[0]: Creation complete after 18s [id=i-02fd158d191d0afa7]
+aws_volume_attachment.bench["st1"]: Creating...
+aws_volume_attachment.bench["sc1"]: Creating...
+aws_volume_attachment.bench["gp2"]: Creating...
+aws_volume_attachment.bench["gp3"]: Creating...
+aws_volume_attachment.bench["io2"]: Creating...
+aws_volume_attachment.bench["small"]: Creating...
+aws_volume_attachment.bench["st1"]: Still creating... [00m10s elapsed]
+aws_volume_attachment.bench["gp3"]: Still creating... [00m10s elapsed]
+aws_volume_attachment.bench["io2"]: Still creating... [00m10s elapsed]
+aws_volume_attachment.bench["gp2"]: Still creating... [00m10s elapsed]
+aws_volume_attachment.bench["sc1"]: Still creating... [00m10s elapsed]
+aws_volume_attachment.bench["small"]: Still creating... [00m10s elapsed]
+aws_volume_attachment.bench["gp3"]: Still creating... [00m20s elapsed]
+aws_volume_attachment.bench["sc1"]: Still creating... [00m20s elapsed]
+aws_volume_attachment.bench["st1"]: Still creating... [00m20s elapsed]
+aws_volume_attachment.bench["io2"]: Still creating... [00m20s elapsed]
+aws_volume_attachment.bench["small"]: Still creating... [00m20s elapsed]
+aws_volume_attachment.bench["gp2"]: Still creating... [00m20s elapsed]
+aws_volume_attachment.bench["gp3"]: Creation complete after 22s [id=vai-379328311]
+aws_volume_attachment.bench["st1"]: Creation complete after 24s [id=vai-2511314058]
+aws_volume_attachment.bench["small"]: Creation complete after 24s [id=vai-2509980932]
+aws_volume_attachment.bench["gp2"]: Creation complete after 24s [id=vai-1264854420]
+aws_volume_attachment.bench["sc1"]: Creation complete after 24s [id=vai-507244220]
+aws_volume_attachment.bench["io2"]: Creation complete after 24s [id=vai-1092125709]
+Releasing state lock. This may take a few moments...
+
+Apply complete! Resources: 13 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+agent_sha256 = "9de5007a020669998084b3f07f86d1b3da87487b168b1ae21b3f1194fe1c265a"
+az = {
+  "id" = "use1-az4"
+  "name" = "us-east-1c"
+}
+bench_instance_id = "i-02fd158d191d0afa7"
+express_bucket = "zenzele-express-6fe3235b--use1-az4--x-s3"
+instance_type = "c7g.xlarge"
+lab_bucket = "zenzele-tiering-6fe3235b"
+region = "us-east-1"
+storage_lens_config_id = "zenzele-tiering-lens"
+volumes = {
+  "gp2" = {
+    "id" = "vol-0a95f034d83073316"
+    "iops" = 300
+    "size" = 100
+    "throughput" = 0
+    "type" = "gp2"
+  }
+  "gp3" = {
+    "id" = "vol-0af0cac46e461f18f"
+    "iops" = 3000
+    "size" = 100
+    "throughput" = 125
+    "type" = "gp3"
+  }
+  "io2" = {
+    "id" = "vol-02dff15f3201cc344"
+    "iops" = 4000
+    "size" = 100
+    "throughput" = 0
+    "type" = "io2"
+  }
+  "sc1" = {
+    "id" = "vol-0fab9ddb8d547ec18"
+    "iops" = 0
+    "size" = 125
+    "throughput" = 0
+    "type" = "sc1"
+  }
+  "small" = {
+    "id" = "vol-02d9cdda17912855a"
+    "iops" = 3000
+    "size" = 1
+    "throughput" = 125
+    "type" = "gp3"
+  }
+  "st1" = {
+    "id" = "vol-02107a06909169733"
+    "iops" = 0
+    "size" = 125
+    "throughput" = 0
+    "type" = "st1"
+  }
+}

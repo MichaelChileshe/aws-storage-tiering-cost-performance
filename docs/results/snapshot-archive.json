@@ -1,0 +1,34 @@
+{
+ "observations": [
+  {
+   "utc": "2026-10-30T08:35:23.996Z",
+   "storage_tier": "archive",
+   "status": "archival-completed",
+   "progress": 100,
+   "start": "2026-10-30T07:50:19.224000+00:00",
+   "archival_complete": "2026-10-30T07:51:49.136000+00:00",
+   "detail": null
+  }
+ ],
+ "fill": {
+  "dev": "/dev/nvme3n1",
+  "kind": "fill",
+  "mib": 200,
+  "seconds": 1.1,
+  "utc": "2026-10-30T07:48:35.426Z",
+  "vol": "vol-02d9cdda17912855a"
+ },
+ "cost": {
+  "snapshot_id": "snap-00f0879b3f2daf437",
+  "state": "completed",
+  "full_size_bytes": 209715200,
+  "volume_size_gib": 1,
+  "billed_gib_basis": 0.1953,
+  "archive_usd_per_gb_month": 0.0125,
+  "min_charge_usd_90_days": 0.0072,
+  "basis": "FullSnapshotSizeInBytes"
+ },
+ "archive_requested_utc": "2026-10-30T07:50:19.319Z",
+ "tiering_start_time": "2026-10-30T07:50:19.224000+00:00",
+ "archive_requested": true
+}

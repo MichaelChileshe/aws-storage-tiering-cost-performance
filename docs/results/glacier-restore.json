@@ -1,0 +1,41 @@
+{
+ "bucket": "zenzele-tiering-6fe3235b",
+ "key": "bench/GLACIER/4KiB.bin",
+ "polls": [
+  {
+   "utc": "2026-10-30T08:28:21.620Z",
+   "restore": "ongoing-request=\"true\""
+  },
+  {
+   "utc": "2026-10-30T08:28:38.884Z",
+   "restore": "ongoing-request=\"true\""
+  },
+  {
+   "utc": "2026-10-30T08:29:00.453Z",
+   "restore": "ongoing-request=\"true\""
+  },
+  {
+   "utc": "2026-10-30T08:29:17.562Z",
+   "restore": "ongoing-request=\"true\""
+  },
+  {
+   "utc": "2026-10-30T08:29:34.648Z",
+   "restore": "ongoing-request=\"false\", expiry-date=\"Sun, 01 Nov 2026 00:00:00 GMT\""
+  }
+ ],
+ "get_before": {
+  "ok": false,
+  "error": "InvalidObjectState",
+  "cli_ms": 2163,
+  "utc": "2026-10-30T08:28:16.726Z"
+ },
+ "requested_utc": "2026-10-30T08:28:16.726Z",
+ "tier": "Expedited",
+ "restored_seen_utc": "2026-10-30T08:29:34.648Z",
+ "get_after": {
+  "ok": true,
+  "error": null,
+  "cli_ms": 2115,
+  "utc": "2026-10-30T08:29:36.764Z"
+ }
+}

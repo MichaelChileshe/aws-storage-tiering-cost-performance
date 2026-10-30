@@ -1,0 +1,95 @@
+{
+ "agent": {
+  "az": "us-east-1c",
+  "az_id": "use1-az4",
+  "boto3": "1.40.31",
+  "ebs_devices": {
+   "vol-": "/dev/nvme6n1",
+   "vol-02107a06909169733": "/dev/nvme2n1",
+   "vol-02107a06909169733-ns-1": "/dev/nvme2n1",
+   "vol-02d9cdda17912855a": "/dev/nvme3n1",
+   "vol-02d9cdda17912855a-ns-1": "/dev/nvme3n1",
+   "vol-02dff15f3201cc344": "/dev/nvme5n1",
+   "vol-02dff15f3201cc344-ns-1": "/dev/nvme5n1",
+   "vol-0a95f034d83073316": "/dev/nvme4n1",
+   "vol-0a95f034d83073316-ns-1": "/dev/nvme4n1",
+   "vol-0af0cac46e461f18f": "/dev/nvme1n1",
+   "vol-0af0cac46e461f18f-ns-1": "/dev/nvme1n1",
+   "vol-0e20c2a232ce39bf0": "/dev/nvme0n1",
+   "vol-0e20c2a232ce39bf0-ns-1": "/dev/nvme0n1",
+   "vol-0fab9ddb8d547ec18": "/dev/nvme6n1",
+   "vol-0fab9ddb8d547ec18-ns-1": "/dev/nvme6n1"
+  },
+  "engine": "libaio",
+  "fio": "fio-3.32",
+  "instance_type": "c7g.xlarge",
+  "kernel": "6.18.56-125.164.amzn2023.aarch64",
+  "kind": "info",
+  "python": "3.9.25",
+  "ready": true
+ },
+ "agent_sha256_16": "9de5007a02066999",
+ "volumes": [
+  {
+   "role": "gp2",
+   "id": "vol-0a95f034d83073316",
+   "type": "gp2",
+   "size": 100,
+   "iops": 300,
+   "throughput": null,
+   "state": "in-use",
+   "device": "/dev/nvme4n1"
+  },
+  {
+   "role": "gp3",
+   "id": "vol-0af0cac46e461f18f",
+   "type": "gp3",
+   "size": 100,
+   "iops": 3000,
+   "throughput": 125,
+   "state": "in-use",
+   "device": "/dev/nvme1n1"
+  },
+  {
+   "role": "io2",
+   "id": "vol-02dff15f3201cc344",
+   "type": "io2",
+   "size": 100,
+   "iops": 4000,
+   "throughput": null,
+   "state": "in-use",
+   "device": "/dev/nvme5n1"
+  },
+  {
+   "role": "sc1",
+   "id": "vol-0fab9ddb8d547ec18",
+   "type": "sc1",
+   "size": 125,
+   "iops": null,
+   "throughput": null,
+   "state": "in-use",
+   "device": "/dev/nvme6n1"
+  },
+  {
+   "role": "small",
+   "id": "vol-02d9cdda17912855a",
+   "type": "gp3",
+   "size": 1,
+   "iops": 3000,
+   "throughput": 125,
+   "state": "in-use",
+   "device": "/dev/nvme3n1"
+  },
+  {
+   "role": "st1",
+   "id": "vol-02107a06909169733",
+   "type": "st1",
+   "size": 125,
+   "iops": null,
+   "throughput": null,
+   "state": "in-use",
+   "device": "/dev/nvme2n1"
+  }
+ ],
+ "utc": "2026-10-30T07:30:36.950Z"
+}

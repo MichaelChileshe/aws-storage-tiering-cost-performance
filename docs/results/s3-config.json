@@ -1,0 +1,173 @@
+{
+ "bucket": "zenzele-tiering-6fe3235b",
+ "express_bucket": "zenzele-express-6fe3235b--use1-az4--x-s3",
+ "utc": "2026-10-30T08:31:23.998Z",
+ "lifecycle": {
+  "TransitionDefaultMinimumObjectSize": "all_storage_classes_128K",
+  "Rules": [
+   {
+    "ID": "pacs-studies-to-glacier-ir-after-90-days",
+    "Filter": {
+     "Prefix": "pacs/"
+    },
+    "Status": "Enabled",
+    "Transitions": [
+     {
+      "Days": 90,
+      "StorageClass": "GLACIER_IR"
+     }
+    ]
+   },
+   {
+    "ID": "lab-results-to-glacier-after-30-days-TRAP",
+    "Filter": {
+     "Prefix": "lab-results/"
+    },
+    "Status": "Enabled",
+    "Transitions": [
+     {
+      "Days": 30,
+      "StorageClass": "GLACIER"
+     }
+    ]
+   },
+   {
+    "Expiration": {
+     "Days": 400
+    },
+    "ID": "logs-ia-30-glacier-90-expire-400",
+    "Filter": {
+     "Prefix": "logs/"
+    },
+    "Status": "Enabled",
+    "Transitions": [
+     {
+      "Days": 30,
+      "StorageClass": "STANDARD_IA"
+     },
+     {
+      "Days": 90,
+      "StorageClass": "GLACIER"
+     }
+    ]
+   },
+   {
+    "Expiration": {
+     "Days": 35
+    },
+    "ID": "nightly-exports-expire-after-35-days",
+    "Filter": {
+     "Prefix": "exports/"
+    },
+    "Status": "Enabled"
+   },
+   {
+    "ID": "abort-incomplete-multipart-uploads-7-days",
+    "Filter": {
+     "Prefix": ""
+    },
+    "Status": "Enabled",
+    "AbortIncompleteMultipartUpload": {
+     "DaysAfterInitiation": 7
+    }
+   }
+  ]
+ },
+ "intelligent_tiering": {
+  "Id": "research-archive-tiers",
+  "Filter": {
+   "Prefix": "research/"
+  },
+  "Status": "Enabled",
+  "Tierings": [
+   {
+    "Days": 90,
+    "AccessTier": "ARCHIVE_ACCESS"
+   },
+   {
+    "Days": 180,
+    "AccessTier": "DEEP_ARCHIVE_ACCESS"
+   }
+  ]
+ },
+ "storage_lens_ids": [
+  "default-account-dashboard",
+  "zenzele-tiering-lens"
+ ],
+ "storage_lens": {
+  "id": "zenzele-tiering-lens",
+  "enabled": true,
+  "include": {
+   "Buckets": [
+    "arn:aws:s3:::zenzele-tiering-6fe3235b"
+   ]
+  },
+  "account_level_keys": [
+   "BucketLevel"
+  ]
+ },
+ "objects": [
+  {
+   "key": "bench/GLACIER/4KiB.bin",
+   "bytes": 4096,
+   "class": "GLACIER"
+  },
+  {
+   "key": "bench/GLACIER/8MiB.bin",
+   "bytes": 8388608,
+   "class": "GLACIER"
+  },
+  {
+   "key": "bench/GLACIER_IR/4KiB.bin",
+   "bytes": 4096,
+   "class": "GLACIER_IR"
+  },
+  {
+   "key": "bench/GLACIER_IR/8MiB.bin",
+   "bytes": 8388608,
+   "class": "GLACIER_IR"
+  },
+  {
+   "key": "bench/INTELLIGENT_TIERING/4KiB.bin",
+   "bytes": 4096,
+   "class": "INTELLIGENT_TIERING"
+  },
+  {
+   "key": "bench/INTELLIGENT_TIERING/8MiB.bin",
+   "bytes": 8388608,
+   "class": "INTELLIGENT_TIERING"
+  },
+  {
+   "key": "bench/STANDARD/4KiB.bin",
+   "bytes": 4096,
+   "class": "STANDARD"
+  },
+  {
+   "key": "bench/STANDARD/8MiB.bin",
+   "bytes": 8388608,
+   "class": "STANDARD"
+  },
+  {
+   "key": "bench/STANDARD_IA/4KiB.bin",
+   "bytes": 4096,
+   "class": "STANDARD_IA"
+  },
+  {
+   "key": "bench/STANDARD_IA/8MiB.bin",
+   "bytes": 8388608,
+   "class": "STANDARD_IA"
+  }
+ ],
+ "express_objects": [
+  {
+   "key": "bench/EXPRESS_ONEZONE/8MiB.bin",
+   "bytes": 8388608,
+   "class": "EXPRESS_ONEZONE"
+  },
+  {
+   "key": "bench/EXPRESS_ONEZONE/4KiB.bin",
+   "bytes": 4096,
+   "class": "EXPRESS_ONEZONE"
+  }
+ ]
+}

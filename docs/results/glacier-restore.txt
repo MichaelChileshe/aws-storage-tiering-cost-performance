@@ -1,0 +1,11 @@
+== s3://zenzele-tiering-6fe3235b/bench/GLACIER/4KiB.bin: 4096 bytes, storage class GLACIER, Restore=None
+   GET before restore: refused: InvalidObjectState
+   restore requested at 2026-10-30T08:28:16.726Z (Expedited, 1 day)
+   2026-10-30T08:28:21.620Z  Restore=ongoing-request="true"
+   2026-10-30T08:28:38.884Z  Restore=ongoing-request="true"
+   2026-10-30T08:29:00.453Z  Restore=ongoing-request="true"
+   2026-10-30T08:29:17.562Z  Restore=ongoing-request="true"
+   2026-10-30T08:29:34.648Z  Restore=ongoing-request="false", expiry-date="Sun, 01 Nov 2026 00:00:00 GMT"
+   GET after restore: OK; storage class still GLACIER
+   requested 2026-10-30T08:28:16.726Z -> first seen restored 2026-10-30T08:29:34.648Z
+saved build/results/glacier-restore.json

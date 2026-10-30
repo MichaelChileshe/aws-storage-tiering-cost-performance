@@ -1,0 +1,26 @@
+== gp2 vol-0a95f034d83073316: gp2 300 IOPS None MiB/s -> gp3 3000 IOPS 125 MiB/s; started 2026-10-30T08:07:38+00:00
+   2026-10-30T08:08:08.380Z  optimizing progress 3 %
+   running fio while the volume is optimizing ...
+== gp2: vol-0a95f034d83073316 gp3 100 GiB iops=3000 throughput=125  [migrate-during] (about 69 s) ...
+  still running (19 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (35 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (52 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (69 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+   randread4k   2,998 IOPS  11.7 MiB/s  p50 10.68 ms  p99 11.08 ms
+   randwrite4k  2,998 IOPS  11.7 MiB/s  p50 10.68 ms  p99 10.81 ms
+   seqread1m    124 IOPS  125.2 MiB/s  p50 121.11 ms  p99 131.60 ms
+   spec: 3000 IOPS / 125 MiB/s provisioned, no credits
+   2026-10-30T08:12:51.956Z  completed  progress 100 %
+   completed; running fio on the final configuration ...
+== gp2: vol-0a95f034d83073316 gp3 100 GiB iops=3000 throughput=125  [migrate-after] (about 69 s) ...
+  still running (19 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (35 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (52 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+  still running (68 s): i-02fd158d191d0afa7 (InProgress / InProgress)
+   randread4k   2,998 IOPS  11.7 MiB/s  p50 10.68 ms  p99 10.95 ms
+   randwrite4k  2,998 IOPS  11.7 MiB/s  p50 10.68 ms  p99 10.81 ms
+   seqread1m    124 IOPS  125.2 MiB/s  p50 121.11 ms  p99 130.55 ms
+   spec: 3000 IOPS / 125 MiB/s provisioned, no credits
+
+   AWS StartTime 2026-10-30T08:07:38+00:00  EndTime 2026-10-30T08:12:41+00:00  state completed
+saved build/results/modify-gp2-migrate.json

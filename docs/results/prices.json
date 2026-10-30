@@ -1,0 +1,600 @@
+{
+  "fetched_utc": "2026-10-30T08:35:09.613Z",
+  "location": "US East (N. Virginia)",
+  "prices": {
+    "s3_standard": {
+      "key": "s3_standard",
+      "usagetype": "TimedStorage-ByteHrs",
+      "what": "S3 Standard storage",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.023,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": 51200.0,
+          "desc": "$0.023 per GB - first 50 TB / month of storage used"
+        },
+        {
+          "usd": 0.022,
+          "unit": "GB-Mo",
+          "begin": 51200.0,
+          "end": 512000.0,
+          "desc": "$0.022 per GB - next 450 TB / month of storage used"
+        },
+        {
+          "usd": 0.021,
+          "unit": "GB-Mo",
+          "begin": 512000.0,
+          "end": null,
+          "desc": "$0.021 per GB - storage used / month over 500 TB"
+        }
+      ],
+      "sku": "WP9ANXZGBYYSGJEA",
+      "matches": 1
+    },
+    "s3_sia": {
+      "key": "s3_sia",
+      "usagetype": "TimedStorage-SIA-ByteHrs",
+      "what": "S3 Standard-IA storage",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.0125,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.0125 per GB-Month of storage used in Standard-Infrequent Access"
+        }
+      ],
+      "sku": "379GYJUQ5WFBUYGM",
+      "matches": 1
+    },
+    "s3_gir": {
+      "key": "s3_gir",
+      "usagetype": "TimedStorage-GIR-ByteHrs",
+      "what": "S3 Glacier Instant Retrieval storage",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.004,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.004 per GB-Month of storage used in Glacier Instant Retrieval"
+        }
+      ],
+      "sku": "NMJQ7TNW84EMBGZM",
+      "matches": 1
+    },
+    "s3_glacier": {
+      "key": "s3_glacier",
+      "usagetype": "TimedStorage-GlacierByteHrs",
+      "what": "S3 Glacier Flexible Retrieval storage",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.0036,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.0036 per GB / month of storage used - Amazon Glacier"
+        }
+      ],
+      "sku": "ZGASJWMFVH7NM8RK",
+      "matches": 1
+    },
+    "s3_int_fa": {
+      "key": "s3_int_fa",
+      "usagetype": "TimedStorage-INT-FA-ByteHrs",
+      "what": "Intelligent-Tiering Frequent Access",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.023,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": 51200.0,
+          "desc": "$0.023 per GB - first 50 TB / month of storage used in Intelligent-Tiering, Frequent Access Tier"
+        },
+        {
+          "usd": 0.022,
+          "unit": "GB-Mo",
+          "begin": 51200.0,
+          "end": 512000.0,
+          "desc": "$0.022 per GB - next 450 TB / month of storage used in Intelligent-Tiering, Frequent Access Tier"
+        },
+        {
+          "usd": 0.021,
+          "unit": "GB-Mo",
+          "begin": 512000.0,
+          "end": null,
+          "desc": "$0.021 per GB - over 500 TB / month of storage used in Intelligent-Tiering, Frequent Access Tier"
+        }
+      ],
+      "sku": "T5CD4UDRVV44YE2T",
+      "matches": 1
+    },
+    "s3_int_ia": {
+      "key": "s3_int_ia",
+      "usagetype": "TimedStorage-INT-IA-ByteHrs",
+      "what": "Intelligent-Tiering Infrequent Access",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.0125,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.0125 per GB-Month of storage used in Intelligent-Tiering, Infrequent Access Tier"
+        }
+      ],
+      "sku": "M7WA952JTYFHTE64",
+      "matches": 1
+    },
+    "s3_int_aia": {
+      "key": "s3_int_aia",
+      "usagetype": "TimedStorage-INT-AIA-ByteHrs",
+      "what": "Intelligent-Tiering Archive Instant Access",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.004,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.004 per GB-Month of storage used in Intelligent-Tiering, Archive Instant Access tier"
+        }
+      ],
+      "sku": "J5H5J7F2H2NJEZZN",
+      "matches": 1
+    },
+    "s3_xz": {
+      "key": "s3_xz",
+      "usagetype": "TimedStorage-XZ-ByteHrs",
+      "what": "S3 Express One Zone storage",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.11,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.11 per GB-Mo of Storage in Express One Zone "
+        }
+      ],
+      "sku": "CFF4F5FZYKV2GKYD",
+      "matches": 1
+    },
+    "s3_int_monitor": {
+      "key": "s3_int_monitor",
+      "usagetype": "Monitoring-Automation-INT",
+      "what": "Intelligent-Tiering monitoring, per object-month",
+      "unit": "Objects",
+      "dims": [
+        {
+          "usd": 2.5e-06,
+          "unit": "Objects",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.0025 per 1,000 Objects per month in Intelligent-Tiering"
+        }
+      ],
+      "sku": "7DR3RFK9W2W43KSC",
+      "matches": 1
+    },
+    "s3_req_tier1": {
+      "key": "s3_req_tier1",
+      "usagetype": "Requests-Tier1",
+      "what": "PUT/COPY/POST/LIST, S3 Standard",
+      "unit": "Requests",
+      "dims": [
+        {
+          "usd": 5e-06,
+          "unit": "Requests",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.005 per 1,000 PUT, COPY, POST, or LIST requests"
+        }
+      ],
+      "sku": "E9YHNFENF4XQBZR6",
+      "matches": 1
+    },
+    "s3_req_tier2": {
+      "key": "s3_req_tier2",
+      "usagetype": "Requests-Tier2",
+      "what": "GET and other, S3 Standard",
+      "unit": "Requests",
+      "dims": [
+        {
+          "usd": 4e-07,
+          "unit": "Requests",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.004 per 10,000 GET and all other requests"
+        }
+      ],
+      "sku": "ZWQ6Q48CRJXX4FXE",
+      "matches": 1
+    },
+    "s3_req_tier6": {
+      "key": "s3_req_tier6",
+      "usagetype": "Requests-Tier6",
+      "what": "Expedited Glacier Flexible restore requests",
+      "unit": "Requests",
+      "dims": [
+        {
+          "usd": 0.01,
+          "unit": "Requests",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.01 per Expedited Glacier request"
+        }
+      ],
+      "sku": "UZVPN9AWBCUHZHXM",
+      "matches": 1
+    },
+    "s3_req_gir_tier1": {
+      "key": "s3_req_gir_tier1",
+      "usagetype": "Requests-GIR-Tier1",
+      "what": "PUT/COPY/POST, Glacier Instant Retrieval",
+      "unit": "Requests",
+      "dims": [
+        {
+          "usd": 2e-05,
+          "unit": "Requests",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.02 per 1,000 PUT, COPY, POST or LIST requests to Glacier Instant Retrieval"
+        }
+      ],
+      "sku": "YAXYB5WAVB7U5BRN",
+      "matches": 1
+    },
+    "s3_retr_sia": {
+      "key": "s3_retr_sia",
+      "usagetype": "Retrieval-SIA",
+      "what": "Standard-IA retrieval per GB",
+      "unit": "GB",
+      "dims": [
+        {
+          "usd": 0.01,
+          "unit": "GB",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.01 per GB - flat fee for all bytes retrieved in Standard-Infrequent Access"
+        }
+      ],
+      "sku": "7594RTQEE8ND34GA",
+      "matches": 1
+    },
+    "s3_retr_gir": {
+      "key": "s3_retr_gir",
+      "usagetype": "Retrieval-GIR",
+      "what": "Glacier Instant Retrieval retrieval per GB",
+      "unit": "GB",
+      "dims": [
+        {
+          "usd": 0.03,
+          "unit": "GB",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.03 per GB - flat fee for all bytes retrieved in Glacier Instant Retrieval"
+        }
+      ],
+      "sku": "CN3DWKRWAMMHWCA3",
+      "matches": 1
+    },
+    "s3_retr_expedited": {
+      "key": "s3_retr_expedited",
+      "usagetype": "Expedited-Retrieval-Bytes",
+      "what": "Expedited Glacier Flexible retrieval per GB",
+      "unit": "GB",
+      "dims": [
+        {
+          "usd": 0.03,
+          "unit": "GB",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.03 per GB - Expedited retrieval fee"
+        }
+      ],
+      "sku": "893YY33ZT2VG9JGZ",
+      "matches": 1
+    },
+    "ebs_gp2": {
+      "key": "ebs_gp2",
+      "usagetype": "EBS:VolumeUsage.gp2",
+      "what": "gp2 storage",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.1,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.10 per GB-month of General Purpose SSD (gp2) provisioned storage - US East (Northern Virginia)"
+        }
+      ],
+      "sku": "HY3BZPP2B6K8MSJF",
+      "matches": 1
+    },
+    "ebs_gp3": {
+      "key": "ebs_gp3",
+      "usagetype": "EBS:VolumeUsage.gp3",
+      "what": "gp3 storage",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.08,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.08 per GB-month of General Purpose (gp3) provisioned storage - US East (N. Virginia)"
+        }
+      ],
+      "sku": "JG3KUJMBRGHV3N8G",
+      "matches": 1
+    },
+    "ebs_gp3_iops": {
+      "key": "ebs_gp3_iops",
+      "usagetype": "EBS:VolumeP-IOPS.gp3",
+      "what": "gp3 IOPS above 3000",
+      "unit": "IOPS-Mo",
+      "dims": [
+        {
+          "usd": 0.005,
+          "unit": "IOPS-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.005 per provisioned IOPS-month of gp3 - US East (N. Virginia)"
+        }
+      ],
+      "sku": "7Q58NR58VQEASA4W",
+      "matches": 1
+    },
+    "ebs_gp3_tput": {
+      "key": "ebs_gp3_tput",
+      "usagetype": "EBS:VolumeP-Throughput.gp3",
+      "what": "gp3 throughput above 125 MiB/s",
+      "unit": "GiBps-mo",
+      "dims": [
+        {
+          "usd": 40.96,
+          "unit": "GiBps-mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.04 per provisioned MiBps-month of gp3 - US East (N. Virginia)"
+        }
+      ],
+      "sku": "SQUFRQX4K92S4SBB",
+      "matches": 1
+    },
+    "ebs_io2": {
+      "key": "ebs_io2",
+      "usagetype": "EBS:VolumeUsage.io2",
+      "what": "io2 storage",
+      "unit": "GB-month",
+      "dims": [
+        {
+          "usd": 0.125,
+          "unit": "GB-month",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.125 per GB-month of Provisioned IOPS SSD (io2)  provisioned storage - US East (Northern Virginia)"
+        }
+      ],
+      "sku": "6V576P37PS7K7KYU",
+      "matches": 1
+    },
+    "ebs_io2_iops": {
+      "key": "ebs_io2_iops",
+      "usagetype": "EBS:VolumeP-IOPS.io2",
+      "what": "io2 IOPS up to 32000",
+      "unit": "IOPS-Mo",
+      "dims": [
+        {
+          "usd": 0.065,
+          "unit": "IOPS-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.065 per IOPS-month provisioned (io2) - US East (Northern Virginia)"
+        }
+      ],
+      "sku": "X9AGQNCQXFA9Q8XZ",
+      "matches": 1
+    },
+    "ebs_io2_iops_t2": {
+      "key": "ebs_io2_iops_t2",
+      "usagetype": "EBS:VolumeP-IOPS.io2.tier2",
+      "what": "io2 IOPS 32001-64000",
+      "unit": "IOPS-Mo",
+      "dims": [
+        {
+          "usd": 0.0455,
+          "unit": "IOPS-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.0455 per IOPS-month provisioned (io2) for 32001-64000 IOPS for a volume that has provisioned greater an 32000 IOPS"
+        }
+      ],
+      "sku": "KDKG2R3W4NMV7CHP",
+      "matches": 1
+    },
+    "ebs_st1": {
+      "key": "ebs_st1",
+      "usagetype": "EBS:VolumeUsage.st1",
+      "what": "st1 storage",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.045,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.045 per GB-month of Throughput Optimized HDD (st1) provisioned storage - US East (Northern Virginia)"
+        }
+      ],
+      "sku": "YQT3C842QHBG6XCU",
+      "matches": 1
+    },
+    "ebs_sc1": {
+      "key": "ebs_sc1",
+      "usagetype": "EBS:VolumeUsage.sc1",
+      "what": "sc1 storage",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.015,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.015 per GB-month of Cold HDD (sc1) provisioned storage - US East (Northern Virginia)"
+        }
+      ],
+      "sku": "6U5VMCFHHMTH3QW6",
+      "matches": 1
+    },
+    "ebs_snap": {
+      "key": "ebs_snap",
+      "usagetype": "EBS:SnapshotUsage",
+      "what": "EBS snapshot, standard tier",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.05,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.05 per GB-Month of snapshot data stored - US East (Northern Virginia)"
+        }
+      ],
+      "sku": "7U7TWP44UP36AT3R",
+      "matches": 1
+    },
+    "ebs_snap_archive": {
+      "key": "ebs_snap_archive",
+      "usagetype": "EBS:SnapshotArchiveStorage",
+      "what": "EBS snapshot, archive tier",
+      "unit": "GB-Mo",
+      "dims": [
+        {
+          "usd": 0.0125,
+          "unit": "GB-Mo",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.0125 per GB-Month of snapshot archive data stored - US East (Northern Virginia)"
+        }
+      ],
+      "sku": "TQQM6CHBJQ7MKT24",
+      "matches": 1
+    },
+    "ebs_snap_archive_retrieval": {
+      "key": "ebs_snap_archive_retrieval",
+      "usagetype": "EBS:SnapshotArchiveRetrieval",
+      "what": "EBS snapshot archive retrieval per GB",
+      "unit": "GB",
+      "dims": [
+        {
+          "usd": 0.03,
+          "unit": "GB",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.03 per GB of snapshot archive data retrieved - US East (Northern Virginia)"
+        }
+      ],
+      "sku": "DDSCQ4YGF66NWWRJ",
+      "matches": 1
+    },
+    "ec2_c7g.xlarge": {
+      "key": "ec2_c7g.xlarge",
+      "usagetype": "BoxUsage:c7g.xlarge",
+      "what": "c7g.xlarge Linux on-demand per hour",
+      "unit": "Hrs",
+      "dims": [
+        {
+          "usd": 0.145,
+          "unit": "Hrs",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.145 per On Demand Linux c7g.xlarge Instance Hour"
+        }
+      ],
+      "sku": "R367PJ3B3KCXQF5R",
+      "matches": 1
+    },
+    "s3_tr_glacier": {
+      "key": "s3_tr_glacier",
+      "usagetype": "Requests-Tier3",
+      "what": "Lifecycle transitions to Glacier Flexible Retrieval",
+      "unit": "Requests",
+      "dims": [
+        {
+          "usd": 3e-05,
+          "unit": "Requests",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.03 per 1,000 Glacier Requests"
+        }
+      ],
+      "sku": "M2EZ4Q623R8XZ29A",
+      "matches": 1,
+      "rebuilt_from": "pricing-raw.jsonl record of the same fetch (operation S3-GlacierTransition)"
+    },
+    "s3_tr_gir": {
+      "key": "s3_tr_gir",
+      "usagetype": "Requests-Tier4",
+      "what": "Lifecycle transitions to Glacier Instant Retrieval",
+      "unit": "Requests",
+      "dims": [
+        {
+          "usd": 2e-05,
+          "unit": "Requests",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.02 per 1,000 transitions to Glacier Instant Retrieval"
+        }
+      ],
+      "sku": "GMZJHKZDB9NQ9KKY",
+      "matches": 1,
+      "rebuilt_from": "pricing-raw.jsonl record of the same fetch (operation S3-GIRTransition)"
+    },
+    "s3_tr_sia": {
+      "key": "s3_tr_sia",
+      "usagetype": "Requests-Tier4",
+      "what": "Lifecycle transitions to Standard-IA",
+      "unit": "Requests",
+      "dims": [
+        {
+          "usd": 1e-05,
+          "unit": "Requests",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.01 per 1,000 transitions to Standard-Infrequent Access"
+        }
+      ],
+      "sku": "JS3WNUP3WAZ96Q9X",
+      "matches": 1,
+      "rebuilt_from": "pricing-raw.jsonl record of the same fetch (operation S3-SIATransition)"
+    },
+    "s3_tr_int": {
+      "key": "s3_tr_int",
+      "usagetype": "Requests-Tier4",
+      "what": "Lifecycle transitions to Intelligent-Tiering",
+      "unit": "Requests",
+      "dims": [
+        {
+          "usd": 1e-05,
+          "unit": "Requests",
+          "begin": 0.0,
+          "end": null,
+          "desc": "$0.01 per 1,000 transitions to Intelligent Tiering"
+        }
+      ],
+      "sku": "BUS5A6KXQNHDMERS",
+      "matches": 1,
+      "rebuilt_from": "pricing-raw.jsonl record of the same fetch (operation S3-INTTransition)"
+    }
+  },
+  "note": "Corrected on 2026-10-30 from the raw Price List records of this same fetch (pricing-raw.jsonl): s3_tr_glacier / s3_tr_gir / s3_tr_sia / s3_tr_int replace s3_req_tier3 / s3_req_tier4, whose lookup took the first of several products (the Deep Archive and One Zone-IA transition prices). s3_gda (Glacier Deep Archive storage) matched no product in the fetch and is used by no option, so it is left out. Every other price is exactly as fetched."
+}
